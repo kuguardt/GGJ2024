@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &146480116462107303
 Transform:
   m_ObjectHideFlags: 0
@@ -403,10 +403,9 @@ MonoBehaviour:
   originSpeed: 10
   currentSpeed: 0
   dashPower: 30
-  extraJumpPower: 16
+  vertDashMultiplier: 1.5
   jumpPower: 18
   jumpBufferTime: 0.2
-  jumpCD: 0.4
   coyoteTime: 0.22
   rb: {fileID: 7873133209184088148}
   groundCheck: {fileID: 6009422457977851407}

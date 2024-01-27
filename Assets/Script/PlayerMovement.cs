@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashPower;
     bool isDashing = false;
     private float dashTimer;
+    [SerializeField] float vertDashMultiplier;
     
     [SerializeField] float jumpPower;
     [SerializeField] float jumpBufferTime;
@@ -31,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float originalGravity;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -153,10 +153,15 @@ public class PlayerMovement : MonoBehaviour
         float dashTime = 0.25f;
 
         Vector2 originalVelocity = rb.velocity;
-        float y = Mathf.Clamp(movementInput.y, 0, 1f) * dashPower/3.0f;
-       
-        
-        rb.velocity = new Vector2(dashPower * Mathf.Sign(movementInput.x), rb.velocity.y);
+        //float vertical = Mathf.Clamp(movementInput.y, 0, 1f) * dashPower/3.0f;
+        if (Mathf.Abs(movementInput.x) < 0.1f && movementInput.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(movementInput.y, 0, 1f) * dashPower / vertDashMultiplier);
+        }
+        else
+        {
+            rb.velocity = new Vector2(dashPower * Mathf.Sign(movementInput.x), rb.velocity.y);
+        }
 
         yield return new WaitForSeconds(dashTime);
 
