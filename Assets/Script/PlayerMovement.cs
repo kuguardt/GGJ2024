@@ -11,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float currentSpeed;
     private bool isFacingRight = true;
 
+    private bool isDashing = false;
+    [SerializeField] float dashPower = 20f;
+    [SerializeField] float dashCooldown = 2f;
+    private float dashTimer = 0f;
+    
     private bool isJumping;
     bool extraJump;
     [SerializeField] float extraJumpPower;
@@ -40,6 +45,16 @@ public class PlayerMovement : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
 
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        Debug.Log($"{context.action.name} performed: {context.performed} started: {context.started} canceled: {context.canceled}");
+        // Dash
+        if (context.started && !isDashing && Time.time > dashTimer)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+    
     private bool isJumpDown = false;
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -48,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
             extraJump = false;
         }
         
-        Debug.Log($"{context.action.name} performed: {context.performed} started: {context.started} canceled: {context.canceled}");
         if (context.started)
         {
             Debug.Log($"Jump");
@@ -118,7 +132,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * currentSpeed, rb.velocity.y);
+        var speed = currentSpeed;
+        if (!isDashing)
+        {
+            speed = dashPower;
+        }
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     private bool IsGrounded()
@@ -140,5 +159,27 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
         yield return new WaitForSeconds(jumpCD);
         isJumping = false;
+    }
+    
+    private IEnumerator Dash()
+    {
+        isDashing = true;
+        float dashTime = 0.2f; // Adjust as needed
+
+        // Remember the velocity before dashing
+        Vector2 originalVelocity = rb.velocity;
+
+        // Apply dash force
+        rb.velocity = new Vector2(rb.velocity.x + dashPower * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+
+        // Wait for dash time
+        yield return new WaitForSeconds(dashTime);
+
+        // Reset velocity to its original value
+        rb.velocity = originalVelocity;
+
+        // Set a cooldown for the dash
+        dashTimer = Time.time + dashCooldown;
+        isDashing = false;
     }
 }

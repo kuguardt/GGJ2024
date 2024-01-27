@@ -250,7 +250,19 @@ MonoBehaviour:
     m_ActionId: 9bbb0098-8636-45c9-a89f-5a71763886d5
     m_ActionName: Gameplay/Attack[/DualSenseGamepadHID/buttonWest,/DualSenseGamepadHID1/buttonWest,/Keyboard/j]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2735954483544421929}
+        m_TargetAssemblyTypeName: Script.PlayerSkill, Assembly-CSharp
+        m_MethodName: OnSkill
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2e15fbcb-8151-4d25-b661-a5e7f57d9dc4
     m_ActionName: Gameplay/Dash[/DualSenseGamepadHID/buttonEast,/DualSenseGamepadHID1/buttonEast,/Keyboard/l]
   - m_PersistentCalls:
@@ -273,6 +285,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6b8bfb0b-7bf7-4589-b484-2fd298b70e33
     m_ActionName: Gameplay/Jump[/DualSenseGamepadHID/leftStick/up,/Keyboard/w,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7899717690256658647}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 06a3a445-1431-464e-911b-0b303501dce8
+    m_ActionName: Gameplay/Dash[/DualSenseGamepadHID/buttonEast,/DualSenseGamepadHID/leftStick/x,/DualSenseGamepadHID/dpad/left,/DualSenseGamepadHID/dpad/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -309,6 +337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originSpeed: 10
   currentSpeed: 0
+  dashPower: 20
+  dashCooldown: 0
   extraJumpPower: 16
   jumpPower: 18
   jumpBufferTime: 0.2
