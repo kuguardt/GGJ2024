@@ -373,6 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16af463d8ff4a028f31371a939bf255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gasPrefab: {fileID: 8243702220343222825, guid: 8152b419d6a69f642acaaa0893efdd88,
+    type: 3}
 --- !u!114 &3864023097434516090
 MonoBehaviour:
   m_ObjectHideFlags: 0
