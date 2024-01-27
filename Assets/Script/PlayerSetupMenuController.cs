@@ -13,8 +13,6 @@ public class PlayerSetupMenuController : MonoBehaviour
     [SerializeField]
     private GameObject readyPanel;
     [SerializeField]
-    private GameObject menuPanel;
-    [SerializeField]
     private Button readyButton;
 
     private float ignoreInputTime = 1.5f;
@@ -48,7 +46,6 @@ public class PlayerSetupMenuController : MonoBehaviour
         PlayerConfigurationManager.instance.SetPlayerColor(playerIndex, color);
         readyPanel.SetActive(true);
         readyButton.interactable = true;
-        menuPanel.SetActive(false);
         readyButton.Select();
 
     }
