@@ -7,22 +7,19 @@ public class PlayerController : MonoBehaviour
 {
     public static int playerCount = 0;
 
-    [SerializeField]
     private int playerId;
     
+    [ColorUsageAttribute(true,true,0f,8f,0.125f,3f)]
+
     [SerializeField] List<Color> playerColors = new List<Color>(){Color.red, Color.blue, Color.green, Color.yellow};
     // Start is called before the first frame update
     
     void Awake()
     {
-        //playerId = playerCount;
-        //playerCount++;
-        GetComponent<SpriteRenderer>().color = playerColors[playerId];
+        playerId = playerCount;
+        playerCount++;
+        
+        GetComponent<SpriteRenderer>().material.color = playerColors[playerId];
     }
-
-    public void SetPlayerId(int id)
-    {
-        playerId = id;
-    }
-
+    
 }

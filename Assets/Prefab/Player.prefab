@@ -171,7 +171,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a0f2794a583746741ab27c74dbe6f99f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -192754153, guid: 067527ba8043d7c43a04b429ff681d6f, type: 3}
+  m_Sprite: {fileID: 1664331688, guid: 2a74d2a30f58a7c42a8baa33b1d5c4e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -319,10 +319,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 32, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 32, a: 1}
+  - {r: 0, g: 32, b: 0, a: 1}
+  - {r: 16, g: 14.745098, b: 0.2509804, a: 1}
 --- !u!114 &7899717690256658647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gasPrefab: {fileID: 8243702220343222825, guid: 8152b419d6a69f642acaaa0893efdd88,
     type: 3}
+  SkillCoolDown: 1
 --- !u!114 &3864023097434516090
 MonoBehaviour:
   m_ObjectHideFlags: 0
