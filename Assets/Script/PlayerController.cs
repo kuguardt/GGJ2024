@@ -55,12 +55,32 @@ public class PlayerController : MonoBehaviour
     {
         movementInput = context.ReadValue<Vector2>();
     }
-    
+
+    private bool isJumpDown = false;
     public void OnJump(InputAction.CallbackContext context)
     {
+        Debug.Log($"{context.action.name} performed: {context.performed} started: {context.started} canceled: {context.canceled}");
         if (context.started)
         {
+            Debug.Log($"Jump");
+
+            isJumpDown = true;
+            jumpBufferCount = jumpBufferTime;
+            if (IsGrounded() || extraJump)
+            {
+                Debug.Log($"Extra Jump");
+                rb.velocity = new Vector2(rb.velocity.x, extraJump ? extraJumpPower : jumpPower);
+                extraJump = !extraJump;
+            }
             
+        }
+        
+        if (context.canceled && rb.velocity.y > 0f)
+        {
+            Debug.Log($"Cancel Jump");
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+
+            coyoteTimeCount = 0f;
         }
         
         if (IsGrounded() && !context.performed)
@@ -75,11 +95,6 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = movementInput.x;
 
-        if (IsGrounded() && !Input.GetButton("Jump"))
-        {
-            extraJump = false;
-        }
-
         if (IsGrounded())
         {
             coyoteTimeCount = coyoteTime;
@@ -89,19 +104,19 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCount -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (isJumpDown)
         {
-            jumpBufferCount = jumpBufferTime;
-            if (IsGrounded() || extraJump)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, extraJump ? extraJumpPower : jumpPower);
-                extraJump = !extraJump;
-            }
+            isJumpDown = false;
         }
         else
         {
             jumpBufferCount -= Time.deltaTime;
+            if (jumpBufferCount < 0f)
+            {
+                jumpBufferCount = 0f;
+            }
         }
+        
 
         if (coyoteTimeCount > 0f && jumpBufferCount > 0f && !isJumping)
         {
@@ -110,13 +125,6 @@ public class PlayerController : MonoBehaviour
             jumpBufferCount = 0f;
 
             StartCoroutine(JumpCooldown());
-        }
-
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-
-            coyoteTimeCount = 0f;
         }
         
         Flip();
