@@ -282,7 +282,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "One Modifier",
+                    "name": "Dpad",
                     "id": "f671e7f9-0103-4037-8d08-fa91cedf346a",
                     "path": "OneModifier",
                     "interactions": "",
@@ -307,6 +307,72 @@
                     "name": "binding",
                     "id": "1be5de67-37c4-4910-92b2-1fc0146f2850",
                     "path": "<Gamepad>/dpad/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "A",
+                    "id": "ace9814c-1790-4932-84cb-bb29be72d39d",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "9faeac2d-b048-47f4-b6b4-d4747242a954",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "cc077035-6691-4f02-96a9-057c3c089016",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "D",
+                    "id": "32b6edb2-5b21-4d31-8c02-af7a5cad4301",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "a32d8ec7-1840-4331-b6af-c38fb8d165f7",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "088cb42a-73a8-4c07-aaee-399f9a27d049",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
