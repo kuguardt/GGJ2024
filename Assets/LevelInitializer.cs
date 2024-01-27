@@ -17,7 +17,7 @@ public class LevelInitializer : MonoBehaviour
         for (int i = 0; i < playerConfigs.Length; i++)
         {
             var player = Instantiate(playerPrefab, PlayerSpawns[i].position, PlayerSpawns[i].rotation, gameObject.transform);
-            player.GetComponent<PlayerMovement>().InitializePlayer(playerConfigs[i]);
+            player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);
         }
 
     }

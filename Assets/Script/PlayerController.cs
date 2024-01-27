@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     
     void Awake()
     {
-        playerId = playerCount;
-        playerCount++;
+        //playerId = playerCount;
+        //playerCount++;
         GetComponent<SpriteRenderer>().color = playerColors[playerId];
     }
 
