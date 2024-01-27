@@ -59,6 +59,11 @@ public class PlayerController : MonoBehaviour
     private bool isJumpDown = false;
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (IsGrounded() && !context.performed)
+        {
+            extraJump = false;
+        }
+        
         Debug.Log($"{context.action.name} performed: {context.performed} started: {context.started} canceled: {context.canceled}");
         if (context.started)
         {
@@ -83,10 +88,7 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCount = 0f;
         }
         
-        if (IsGrounded() && !context.performed)
-        {
-            extraJump = false;
-        }
+        
     }
     
     

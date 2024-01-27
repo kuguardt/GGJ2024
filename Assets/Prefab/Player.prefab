@@ -213,13 +213,13 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  originSpeed: 5
+  originSpeed: 10
   currentSpeed: 0
-  extraJumpPower: 3
-  jumpPower: 5
-  jumpBufferTime: 1
-  jumpCD: 1
-  coyoteTime: 1
+  extraJumpPower: 16
+  jumpPower: 18
+  jumpBufferTime: 0.2
+  jumpCD: 0.4
+  coyoteTime: 0.2
   rb: {fileID: 7873133209184088148}
   groundCheck: {fileID: 6009422457977851407}
   groundLayer:
@@ -275,7 +275,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
