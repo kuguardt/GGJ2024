@@ -3,6 +3,7 @@ using System.Collections;
 using Script;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -165,7 +166,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isKnockback = true;
         rb.velocity = Vector2.zero;
-        rb.AddForce(attackDirection * knockbackDistance, ForceMode2D.Impulse);
+        Vector2 knockbackDirection =
+            new Vector2((attackDirection.x), Random.Range(0.1f, 0.5f)).normalized * knockbackDistance;
+        rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
         yield return new WaitForSeconds(knockbackStunDuration);
         isKnockback = false;
     }
