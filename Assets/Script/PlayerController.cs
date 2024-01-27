@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         playerId = playerCount;
         playerCount++;
-        
+        gameObject.name = $"Player{playerId}";
         GetComponent<SpriteRenderer>().material.color = playerColors[playerId];
     }
 
