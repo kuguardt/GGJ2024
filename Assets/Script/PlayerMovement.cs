@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
     private Vector2 movementInput;
     
     private float horizontal;
@@ -11,10 +13,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float currentSpeed;
     private bool isFacingRight = true;
 
-    private bool isDashing = false;
-    [SerializeField] float dashPower = 20f;
-    [SerializeField] float dashCooldown = 2f;
-    private float dashTimer = 0f;
+    [SerializeField] float dashPower;
+    bool isDashing = false;
+    public float skillCD;
+    private float dashTimer;
     
     private bool isJumping;
     bool extraJump;
@@ -32,14 +34,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    private float originalGravity;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         currentSpeed = originSpeed;
+        originalGravity = rb.gravityScale;
     }
 
-    // Update is called once per frame
-    
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -55,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private bool isJumpDown = false;
     public void OnJump(InputAction.CallbackContext context)
     {
         if (IsGrounded() && !context.performed)
@@ -67,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log($"Jump");
 
-            isJumpDown = true;
             jumpBufferCount = jumpBufferTime;
             if (IsGrounded() || extraJump)
             {
@@ -84,49 +90,43 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
             coyoteTimeCount = 0f;
-        }
-        
-        
+        }   
     }
-    
     
     // Update is called once per frame
     void Update()
     {
-        horizontal = movementInput.x;
+        if (!isDashing)
+        {
+            horizontal = movementInput.x;
 
-        if (IsGrounded())
-        {
-            coyoteTimeCount = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCount -= Time.deltaTime;
-        }
-
-        if (isJumpDown)
-        {
-            isJumpDown = false;
-        }
-        else
-        {
-            jumpBufferCount -= Time.deltaTime;
-            if (jumpBufferCount < 0f)
+            if (IsGrounded())
             {
+                coyoteTimeCount = coyoteTime;
+            }
+            else
+            {
+                coyoteTimeCount -= Time.deltaTime;
+            }
+
+            if (isJumping)
+            {
+                jumpBufferCount -= Time.deltaTime;
+                if (jumpBufferCount < 0f)
+                {
+                    jumpBufferCount = 0f;
+                    isJumping = false;
+                }
+            }
+
+            if (coyoteTimeCount > 0f && jumpBufferCount > 0f && !isJumping)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 jumpBufferCount = 0f;
+                StartCoroutine(JumpCooldown());
             }
         }
-        
 
-        if (coyoteTimeCount > 0f && jumpBufferCount > 0f && !isJumping)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-
-            jumpBufferCount = 0f;
-
-            StartCoroutine(JumpCooldown());
-        }
-        
         Flip();
     }
 
@@ -135,9 +135,9 @@ public class PlayerMovement : MonoBehaviour
         var speed = currentSpeed;
         if (!isDashing)
         {
-            speed = dashPower;
+            speed = originSpeed;
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     private bool IsGrounded()
@@ -160,26 +160,20 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(jumpCD);
         isJumping = false;
     }
-    
+
     private IEnumerator Dash()
     {
         isDashing = true;
-        float dashTime = 0.2f; // Adjust as needed
+        rb.gravityScale = 0;
+        float dashTime = 0.25f;
 
-        // Remember the velocity before dashing
         Vector2 originalVelocity = rb.velocity;
+        rb.velocity = new Vector2(dashPower * Mathf.Sign(rb.velocity.x), rb.velocity.y);
 
-        // Apply dash force
-        rb.velocity = new Vector2(rb.velocity.x + dashPower * Mathf.Sign(rb.velocity.x), rb.velocity.y);
-
-        // Wait for dash time
         yield return new WaitForSeconds(dashTime);
 
-        // Reset velocity to its original value
-        rb.velocity = originalVelocity;
-
-        // Set a cooldown for the dash
-        dashTimer = Time.time + dashCooldown;
+        rb.gravityScale = originalGravity;
+        dashTimer = Time.time + skillCD;
         isDashing = false;
     }
 }

@@ -7,9 +7,9 @@ namespace Script
     public class PlayerSkill : MonoBehaviour
     {
         [SerializeField] private GameObject gasPrefab;
-        [SerializeField] private float SkillCoolDown = 1f;
         
         private bool canUseSkill = true;
+
         public void OnSkill(InputAction.CallbackContext context)
         {
             Debug.Log(
@@ -25,7 +25,7 @@ namespace Script
             canUseSkill = false;
             Instantiate(gasPrefab, transform.position, Quaternion.identity);
 
-            yield return new WaitForSeconds(SkillCoolDown);
+            yield return new WaitForSeconds(PlayerMovement.instance.skillCD);
             canUseSkill = true;
         }
     }

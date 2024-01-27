@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &146480116462107303
 Transform:
   m_ObjectHideFlags: 0
@@ -266,7 +266,19 @@ MonoBehaviour:
     m_ActionId: 2e15fbcb-8151-4d25-b661-a5e7f57d9dc4
     m_ActionName: Gameplay/Dash[/DualSenseGamepadHID/buttonEast,/DualSenseGamepadHID1/buttonEast,/Keyboard/l]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 491a15d7-0d21-466d-a0b1-7716d123cb80
     m_ActionName: Gameplay/Interact[/DualSenseGamepadHID/buttonNorth,/DualSenseGamepadHID1/buttonNorth,/Keyboard/i]
   - m_PersistentCalls:
@@ -337,13 +349,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originSpeed: 10
   currentSpeed: 0
-  dashPower: 20
-  dashCooldown: 0
+  dashPower: 30
+  isDashing: 0
+  skillCD: 1.5
   extraJumpPower: 16
   jumpPower: 18
   jumpBufferTime: 0.2
   jumpCD: 0.4
-  coyoteTime: 0.2
+  coyoteTime: 0.22
   rb: {fileID: 7873133209184088148}
   groundCheck: {fileID: 6009422457977851407}
   groundLayer:
