@@ -56,6 +56,20 @@ public class PlayerController : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
     
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            
+        }
+        
+        if (IsGrounded() && !context.performed)
+        {
+            extraJump = false;
+        }
+    }
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -104,8 +118,8 @@ public class PlayerController : MonoBehaviour
 
             coyoteTimeCount = 0f;
         }
-
-        //Flip();
+        
+        Flip();
     }
 
     private void FixedUpdate()
@@ -118,14 +132,14 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    // private void Flip()
-    // {
-    //     if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-    //     {
-    //         isFacingRight = !isFacingRight;
-    //         transform.Rotate(0f, 180f, 0f);
-    //     }
-    // }
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0f, 180f, 0f);
+        }
+    }
 
     private IEnumerator JumpCooldown()
     {
