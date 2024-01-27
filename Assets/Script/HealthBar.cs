@@ -25,6 +25,9 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         HealthBarFilter();
+
+        if (Input.GetKeyDown(KeyCode.J))
+            healthTest -= 1f;
     }
 
     void HealthBarFilter()
@@ -42,9 +45,9 @@ public class HealthBar : MonoBehaviour
         {
             return false;
         }
-        else if (currentHealth - (pointNumber * 10) < -10)
+        else if (currentHealth - (pointNumber * 10) < 10)
         {
-            point.color = new Color(point.color[0], point.color[1], point.color[2], 0.1f);
+            point.color = new Color(point.color[0], point.color[1], point.color[2], (currentHealth - (pointNumber * 10))/10f);
             return true;
         }
         else
@@ -55,15 +58,10 @@ public class HealthBar : MonoBehaviour
     void SetHealthPointColor(float currentHealth, Image point)
     {
         if (currentHealth > 50f)
-            point.color = new Color(118f / 255f, 1f, 102f / 255f);
+            point.color = new Color(118f / 255f, 1f, 102f / 255f, point.color[3]); // green: HP 51-100
         else if (currentHealth > 25f)
-            point.color = new Color(253f / 255f, 255f / 255f, 0f);
+            point.color = new Color(253f / 255f, 255f / 255f, 0f, point.color[3]); // yellow: HP 26-50
         else
-            point.color = Color.red;
-    }
-
-    void SetHealthPointAlpha()
-    {
-
+            point.color = new Color(1f, 0f, 0f, point.color[3]); // red
     }
 }
