@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerConfigurationManager : MonoBehaviour
 {
     public List<PlayerConfiguration> playerConfigs;
+    public List<GameObject> playerConfigObjs;
 
     [SerializeField]
     private int maxPlayers = 4;
@@ -24,6 +25,7 @@ public class PlayerConfigurationManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             playerConfigs = new List<PlayerConfiguration>();
+            playerConfigObjs = new List<GameObject>();
         }
     }
 
@@ -41,6 +43,11 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
     }
 
+    public List<GameObject> GetPlayerConfigObjs()
+    {
+        return playerConfigObjs;
+    }
+
     public List<PlayerConfiguration> GetPlayerConfigs()
     {
         return playerConfigs;
@@ -49,16 +56,18 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void HandlePlayerJoin(PlayerInput pi)
     {
         Debug.Log("player joined " + pi.playerIndex);
+
         pi.transform.SetParent(transform);
 
         if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
         {
             playerConfigs.Add(new PlayerConfiguration(pi));
+            playerConfigObjs.Add(pi.gameObject);
         }
     }
 }
 
-public class PlayerConfiguration 
+public class PlayerConfiguration
 {
     public PlayerConfiguration(PlayerInput pi)
     {

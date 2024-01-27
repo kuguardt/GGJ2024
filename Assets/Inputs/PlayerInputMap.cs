@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @InputMap: IInputActionCollection2, IDisposable
+public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @InputMap()
+    public @PlayerInputMap()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputMap"",
@@ -613,8 +613,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Dash;
     public struct GameplayActions
     {
-        private @InputMap m_Wrapper;
-        public GameplayActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+        private @PlayerInputMap m_Wrapper;
+        public GameplayActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
@@ -695,8 +695,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_MenuSelection_Movement;
     public struct MenuSelectionActions
     {
-        private @InputMap m_Wrapper;
-        public MenuSelectionActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+        private @PlayerInputMap m_Wrapper;
+        public MenuSelectionActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_MenuSelection_Select;
         public InputAction @Movement => m_Wrapper.m_MenuSelection_Movement;
         public InputActionMap Get() { return m_Wrapper.m_MenuSelection; }
