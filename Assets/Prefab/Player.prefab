@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8564220098573190193}
   - component: {fileID: 40205918105985027}
+  - component: {fileID: 1716959241721016221}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -151,16 +152,68 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.2, y: 0.2}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!212 &1716959241721016221
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415907630007136737}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.2, y: 0.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &7751997959909513773
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,16 +230,17 @@ GameObject:
   - component: {fileID: 2503231786581267675}
   - component: {fileID: 2735954483544421929}
   - component: {fileID: 3864023097434516090}
+  - component: {fileID: 7384831235274039655}
   - component: {fileID: 6211021219862617293}
   - component: {fileID: 7873133209184088148}
   - component: {fileID: 993089540696006571}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &146480116462107303
 Transform:
   m_ObjectHideFlags: 0
@@ -299,7 +353,19 @@ MonoBehaviour:
     m_ActionId: 02a30691-10d4-47bf-8f7c-a3d994b8f451
     m_ActionName: Gameplay/Movement[/DualSenseGamepadHID/leftStick,/DualSenseGamepadHID1/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2503231786581267675}
+        m_TargetAssemblyTypeName: Script.PlayerAttack, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9bbb0098-8636-45c9-a89f-5a71763886d5
     m_ActionName: Gameplay/Attack[/DualSenseGamepadHID/buttonWest,/DualSenseGamepadHID1/buttonWest,/Keyboard/j]
   - m_PersistentCalls:
@@ -403,10 +469,12 @@ MonoBehaviour:
   originSpeed: 10
   currentSpeed: 0
   dashPower: 30
-  vertDashMultiplier: 1.5
   jumpPower: 18
   jumpBufferTime: 0.2
   coyoteTime: 0.22
+  knockbackDistance: 30
+  knockbackStunDuration: 0.4
+  knockbackForceMode: 0
   rb: {fileID: 7873133209184088148}
   groundCheck: {fileID: 6009422457977851407}
   groundLayer:
@@ -425,6 +493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ade57ce69040298cb9907220622a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoint: {fileID: 6415907630007136737}
+  attackForce: 100
 --- !u!114 &2735954483544421929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +523,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce7e83e269b4271bb9e8f5fd4918a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7384831235274039655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7751997959909513773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63943465ff06f77468120a6a648261e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
 --- !u!70 &6211021219862617293
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

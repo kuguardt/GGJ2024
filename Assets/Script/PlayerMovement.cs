@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float coyoteTime;
     private float coyoteTimeCount;
 
+    [SerializeField] private float knockbackDistance = 100f;
+    [SerializeField] private float knockbackStunDuration = 0.25f;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -114,14 +117,26 @@ public class PlayerMovement : MonoBehaviour
 
         Flip();
     }
+    
+    
+    bool isKnockback = false;
+    public void GotAttacked(Vector2 attackDirection)
+    {
+        StartCoroutine(Knockback(attackDirection));
+    }
+ 
 
     private void FixedUpdate()
     {
         var speed = currentSpeed;
+        if (isKnockback)
+        {
+            return;
+        }
         if (!isDashing)
         {
             speed = originSpeed;
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y) ;
         }
     }
 
@@ -146,14 +161,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator Knockback(Vector2 attackDirection)
+    {
+        isKnockback = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(attackDirection * knockbackDistance, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(knockbackStunDuration);
+        isKnockback = false;
+    }
+
     private IEnumerator Dash()
     {
         isDashing = true;
         rb.gravityScale = 0;
         float dashTime = 0.25f;
 
+        float x = movementInput.x;
+        float y = Mathf.Clamp(movementInput.y, 0, 1f);
+        
         Vector2 originalVelocity = rb.velocity;
-        //float vertical = Mathf.Clamp(movementInput.y, 0, 1f) * dashPower/3.0f;
         if (Mathf.Abs(movementInput.x) < 0.1f && movementInput.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(movementInput.y, 0, 1f) * dashPower / vertDashMultiplier);
@@ -170,4 +196,6 @@ public class PlayerMovement : MonoBehaviour
         dashTimer = Time.time + GetComponent<PlayerSkill>().skillCD;
         isDashing = false;
     }
+
+   
 }
