@@ -604,25 +604,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3454890818872347994, guid: 428c78d1567c92c4c94d748c7c560389,
-        type: 3}
-      propertyPath: playerColors.Array.data[0].b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454890818872347994, guid: 428c78d1567c92c4c94d748c7c560389,
-        type: 3}
-      propertyPath: playerColors.Array.data[0].g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3454890818872347994, guid: 428c78d1567c92c4c94d748c7c560389,
-        type: 3}
-      propertyPath: playerColors.Array.data[0].r
-      value: 0.7490197
-      objectReference: {fileID: 0}
     - target: {fileID: 7751997959909513773, guid: 428c78d1567c92c4c94d748c7c560389,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751997959909513773, guid: 428c78d1567c92c4c94d748c7c560389,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

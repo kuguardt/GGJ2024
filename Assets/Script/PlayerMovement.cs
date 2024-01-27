@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
+using Script;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovement instance;
 
     private Vector2 movementInput;
     
@@ -15,16 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float dashPower;
     bool isDashing = false;
-    public float skillCD;
     private float dashTimer;
     
-    private bool isJumping;
-    bool extraJump;
-    [SerializeField] float extraJumpPower;
-
     [SerializeField] float jumpPower;
     [SerializeField] float jumpBufferTime;
-    [SerializeField] float jumpCD;
     private float jumpBufferCount;
 
     [SerializeField] float coyoteTime;
@@ -35,11 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private float originalGravity;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -55,31 +46,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        Debug.Log($"{context.action.name} performed: {context.performed} started: {context.started} canceled: {context.canceled}");
-        // Dash
-        if (context.started && !isDashing && Time.time > dashTimer)
+        if (GetComponent<PlayerSkill>().canUseSkill)
         {
-            StartCoroutine(Dash());
+            if (context.started && !isDashing && Time.time > dashTimer)
+            {
+                StartCoroutine(Dash());
+            }
         }
     }
-    
+    private bool isJumping = false;
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded() && !context.performed)
-        {
-            extraJump = false;
-        }
-        
+ 
         if (context.started)
         {
-            Debug.Log($"Jump");
 
             jumpBufferCount = jumpBufferTime;
-            if (IsGrounded() || extraJump)
+
+            
+            if ((coyoteTimeCount > 0f && jumpBufferCount > 0f ) && !isJumping)
             {
-                Debug.Log($"Extra Jump");
-                rb.velocity = new Vector2(rb.velocity.x, extraJump ? extraJumpPower : jumpPower);
-                extraJump = !extraJump;
+                isJumping = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                jumpBufferCount = 0f;
             }
             
         }
@@ -102,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (IsGrounded())
             {
+                isJumping = false;
                 coyoteTimeCount = coyoteTime;
             }
             else
@@ -119,12 +109,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (coyoteTimeCount > 0f && jumpBufferCount > 0f && !isJumping)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                jumpBufferCount = 0f;
-                StartCoroutine(JumpCooldown());
-            }
+            
         }
 
         Flip();
@@ -140,9 +125,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    [SerializeField] float groundCheckRadius = 0.2f;
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position,groundCheckRadius);
     }
 
     private void Flip()
@@ -154,13 +146,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator JumpCooldown()
-    {
-        isJumping = true;
-        yield return new WaitForSeconds(jumpCD);
-        isJumping = false;
-    }
-
     private IEnumerator Dash()
     {
         isDashing = true;
@@ -168,12 +153,16 @@ public class PlayerMovement : MonoBehaviour
         float dashTime = 0.25f;
 
         Vector2 originalVelocity = rb.velocity;
-        rb.velocity = new Vector2(dashPower * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        float y = Mathf.Clamp(movementInput.y, 0, 1f) * dashPower/3.0f;
+       
+        
+        rb.velocity = new Vector2(dashPower * Mathf.Sign(movementInput.x), rb.velocity.y);
 
         yield return new WaitForSeconds(dashTime);
 
+        rb.velocity = originalVelocity;
         rb.gravityScale = originalGravity;
-        dashTimer = Time.time + skillCD;
+        dashTimer = Time.time + GetComponent<PlayerSkill>().skillCD;
         isDashing = false;
     }
 }
