@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public static int playerCount = 0;
 
+    [SerializeField]
     private int playerId;
     
     [SerializeField] List<Color> playerColors = new List<Color>(){Color.red, Color.blue, Color.green, Color.yellow};
@@ -18,5 +19,10 @@ public class PlayerController : MonoBehaviour
         playerCount++;
         GetComponent<SpriteRenderer>().color = playerColors[playerId];
     }
-    
+
+    public void SetPlayerId(int id)
+    {
+        playerId = id;
+    }
+
 }

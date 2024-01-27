@@ -273,6 +273,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6b8bfb0b-7bf7-4589-b484-2fd298b70e33
     m_ActionName: Gameplay/Jump[/DualSenseGamepadHID/leftStick/up,/Keyboard/w,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 91cd7774-89ad-44d2-9cea-94c69e738f0d
+    m_ActionName: MenuSelection/Select[/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b30b31eb-1041-4bdc-85d6-eaafddf07946
+    m_ActionName: MenuSelection/Movement[/DualSenseGamepadHID/leftStick,/DualSenseGamepadHID1/leftStick,/DualSenseGamepadHID/dpad/left,/DualSenseGamepadHID1/dpad/left,/DualSenseGamepadHID/dpad/right,/DualSenseGamepadHID1/dpad/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -307,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8be2978feeaa54bb30e736156769b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 3454890818872347994}
   originSpeed: 10
   currentSpeed: 0
   extraJumpPower: 16

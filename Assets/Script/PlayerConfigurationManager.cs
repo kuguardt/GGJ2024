@@ -37,8 +37,13 @@ public class PlayerConfigurationManager : MonoBehaviour
         playerConfigs[index].IsReady = true;
         if (playerConfigs.Count == maxPlayers && playerConfigs.All(p => p.IsReady == true))
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("ControlTest2");
         }
+    }
+
+    public List<PlayerConfiguration> GetPlayerConfigs()
+    {
+        return playerConfigs;
     }
 
     public void HandlePlayerJoin(PlayerInput pi)

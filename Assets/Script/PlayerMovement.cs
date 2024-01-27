@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerConfiguration playerConfig;
+    private InputMap controls;
+    [SerializeField] private PlayerController playerController;
+
     private Vector2 movementInput;
     
     private float horizontal;
@@ -26,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+    private void Awake()
+    {
+        controls = new InputMap();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -140,5 +149,20 @@ public class PlayerMovement : MonoBehaviour
         isJumping = true;
         yield return new WaitForSeconds(jumpCD);
         isJumping = false;
+    }
+
+    public void InitializePlayer(PlayerConfiguration config)
+    {
+        playerConfig = config;
+        playerController.SetPlayerId(playerConfig.PlayerIndex);
+        //config.Input.onActionTriggered += Input_onActionTriggered;
+    }
+
+    private void Input_onActionTriggered(InputAction.CallbackContext obj)
+    {
+        if (obj.action.name == controls.Gameplay.Movement.name)
+        {
+            OnMove(obj);
+        }
     }
 }
