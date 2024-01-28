@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     private float decreaseRate;
     //private float attackDamage = 10f;
 
+    private float decayValue = -1f;
+
     private float timer = 0f;
     private int playerID;
 
@@ -33,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
         
         if (timer >= idleDecreaseRate && IsAlive)
         {
-            currentHealth -= 1f;
+            currentHealth += decayValue;
             timer = 0f;
         }
 
@@ -45,6 +47,11 @@ public class PlayerHealth : MonoBehaviour
         }
         
         HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
+    }
+
+    public void SetDecayValue(float value)
+    {
+        decayValue = value;
     }
 
     public void SetDecreaseRate(int rate)
