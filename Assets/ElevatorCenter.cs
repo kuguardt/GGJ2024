@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ElevatorCenter : MonoBehaviour
 {
+    public Outline toilet1outline;
+    public Outline toilet2outline;
+
     public GameObject toilet1;
     public GameObject toilet2;
     // 1 = lower floor
@@ -36,6 +39,10 @@ public class ElevatorCenter : MonoBehaviour
 
             toilet1.SetActive(false);
             toilet2.SetActive(true);
+
+            toilet1outline.enabled = false;
+            toilet2outline.enabled = true;
+
             isFloor1 = false;
         }
         else
@@ -51,6 +58,10 @@ public class ElevatorCenter : MonoBehaviour
 
             toilet1.SetActive(true);
             toilet2.SetActive(false);
+
+            toilet1outline.enabled = true;
+            toilet2outline.enabled = false;
+
             isFloor1 = true;
         }
     }
