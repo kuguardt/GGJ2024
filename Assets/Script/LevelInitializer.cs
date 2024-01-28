@@ -20,6 +20,7 @@ public class LevelInitializer : MonoBehaviour
         {
             var player = Instantiate(playerPrefab, PlayerSpawns[i].position, PlayerSpawns[i].rotation, gameObject.transform);
             player.GetComponent<PlayerController>().InitializePlayer(playerConfigObjs[i], playerConfigs[i]);
+            player.GetComponent<PlayerHealth>().SetMaxHealth(50f * (playerConfigs.Length));
             players.Add(player);
         }
 

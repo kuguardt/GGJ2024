@@ -47,6 +47,7 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
         {
             var player = Instantiate(playerPrefab, configSpawnPoint.position, configSpawnPoint.rotation, rootPlayerObj.transform);
             player.GetComponent<PlayerController>().InitializePlayer(config);
+            player.GetComponent<PlayerHealth>().SetMaxHealth(1000f);
         }
     }
 }

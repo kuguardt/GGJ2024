@@ -5022,7 +5022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2b36614aca95b4698b67685988be37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GasDamage: 10
+  GasDamage: 5
   GasForce: 10
   GasLifeTime: 1
   alphaStart: 0.5

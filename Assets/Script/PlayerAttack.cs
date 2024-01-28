@@ -59,12 +59,14 @@ namespace Script
         
         private bool atkHit = false;
         [SerializeField] private GameObject attackHitEffect;
+        
+        [SerializeField] private float PunchDamage = 10f;
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
                 atkHit = true;
-                other.gameObject.GetComponent<PlayerHealth>().DecreasePlayerHealth(10);
+                other.gameObject.GetComponent<PlayerHealth>().DecreasePlayerHealth(PunchDamage);
                 other.gameObject.GetComponent<PlayerMovement>().GotAttacked(transform.right);
             }
         }

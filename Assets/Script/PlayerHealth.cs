@@ -21,6 +21,11 @@ public class PlayerHealth : MonoBehaviour
     private float timer = 0f;
     private int playerID;
 
+    public void SetMaxHealth(float health)
+    {
+        maxHeatlh = currentHealth = health;
+        UpdateUI();
+    }
     void Start()
     {
         decreaseRate = idleDecreaseRate;
@@ -29,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         playerID = playerController.GetPlayerID();
 
         HPBarManager.instance.SetActiveHealthBar(playerID);
-        HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -54,7 +59,13 @@ public class PlayerHealth : MonoBehaviour
             Death();
         }
         
-        HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        float healthPercent = (currentHealth/ maxHeatlh) * 100.0f;
+        HPBarManager.instance.SetHealthBarUI(playerID, healthPercent);
     }
 
     public void SetDecayValue(float value)
