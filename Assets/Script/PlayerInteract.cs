@@ -47,6 +47,7 @@ namespace Script
             _isInteracting = true;
             
             GetComponent<SpriteRenderer>().color = Color.yellow;
+            GetComponent<PlayerHealth>().SetDecayValue(5f);
 
             transform.position = _toilet.transform.position;
         }
@@ -58,6 +59,7 @@ namespace Script
             _isInteracting = false;
             
             GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<PlayerHealth>().SetDecayValue(-1f);
 
         }
 

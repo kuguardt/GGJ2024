@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Script;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerController : MonoBehaviour
@@ -13,9 +13,11 @@ public class PlayerController : MonoBehaviour
     public GameObject playerConfigObj;
 
     private PlayerMovement playerMovement;
-    private Script.PlayerAttack playerAttack;
-    private Script.PlayerSkill playerSkill;
-    private Script.PlayerInteract playerInteract;
+    private PlayerAttack playerAttack;
+    private PlayerSkill playerSkill;
+    private PlayerInteract playerInteract;
+    private PlayerHealth playerHealth;
+    
 
     private PlayerInputMap controls;
 
@@ -28,10 +30,11 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
-        playerAttack = GetComponent<Script.PlayerAttack>();
-        playerSkill = GetComponent<Script.PlayerSkill>();
-        playerInteract = GetComponent<Script.PlayerInteract>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerSkill = GetComponent<PlayerSkill>();
+        playerInteract = GetComponent<PlayerInteract>();
         controls = new PlayerInputMap();
     }
 
@@ -52,6 +55,12 @@ public class PlayerController : MonoBehaviour
 
     private void Input_onActionTriggered(CallbackContext obj)
     {
+        if (!playerHealth.IsAlive)
+        {
+            playerMovement.movementInput = Vector2.zero;
+            return;
+        }
+        
         if (obj.action.name == controls.Gameplay.Interact.name)
         {
             if (inConfigRoom)
