@@ -10,8 +10,6 @@ public class PlayerConfigurationManager : MonoBehaviour
     public List<PlayerConfiguration> playerConfigs;
     public List<GameObject> playerConfigObjs;
 
-    [SerializeField]
-    private int maxPlayers = 4;
 
     public static PlayerConfigurationManager instance;
     private void Awake()
@@ -37,7 +35,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void ReadyPlayer(int index)
     {
         playerConfigs[index].IsReady = true;
-        if (playerConfigs.Count == maxPlayers && playerConfigs.All(p => p.IsReady == true))
+        if (playerConfigs.All(p => p.IsReady == true))
         {
             SceneManager.LoadScene("Control Test");
         }
