@@ -54,7 +54,7 @@ namespace Script
 
         private void StopUsingToilet()
         {
-            _toilet.isOccupied = false;
+            if(_toilet.gameObject.activeSelf) _toilet.isOccupied = false;
                 
             _isInteracting = false;
             

@@ -7,16 +7,15 @@ namespace Script
     public class PlayerSkill : MonoBehaviour
     {
         [SerializeField] private GameObject gasPrefab;
-        
+
         public bool canUseSkill = true;
 
         public float skillCD = 1.5f;
-        
+
         public void OnSkill(InputAction.CallbackContext context)
         {
-
             if (canUseSkill && context.started)
-            { 
+            {
                 Debug.Log($"Skill");
                 StartCoroutine(Gas());
             }
@@ -24,7 +23,9 @@ namespace Script
 
         private IEnumerator Gas()
         {
-            Instantiate(gasPrefab, transform.position, Quaternion.identity);
+            GasSkill gas = Instantiate(gasPrefab, transform.position, Quaternion.identity).GetComponent<GasSkill>();
+            gas.AddGasIgnore(gameObject);
+            
             yield return new WaitForEndOfFrame();
             canUseSkill = false;
 

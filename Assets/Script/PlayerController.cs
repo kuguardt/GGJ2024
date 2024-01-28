@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         playerId = playerConfig.PlayerIndex;
         GetComponent<SpriteRenderer>().material.color = playerColors[playerId];
         playerConfigObj = configObj;
+        gameObject.name = "Player" + playerId;
 
         config.Input.onActionTriggered += Input_onActionTriggered;
     }

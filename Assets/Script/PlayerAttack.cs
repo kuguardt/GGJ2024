@@ -11,6 +11,8 @@ namespace Script
 
         private Animator _anim;
         Coroutine _atkCour = null;
+        Coroutine _atkHitCour = null;
+
         private void Start()
         {
             _anim = GetComponent<Animator>();
@@ -26,29 +28,38 @@ namespace Script
 
         private void Attack()
         {
-            if(_atkCour == null) _atkCour = StartCoroutine(AttackCoroutine());
+            if (_atkCour == null)
+            {
+                atkHit = false;
+                _atkHitCour = StartCoroutine(AttackHit());
+                _atkCour = StartCoroutine(AttackCoroutine());
+            }
         }
-
-        public void TakeDamage()
-        {
-            GetComponent<PlayerHealth>().DecreasePlayerHealth(10);
-        }
+        
         
         IEnumerator AttackCoroutine()
         {
             _anim.Play("Attack2");
             yield return new WaitUntil(()=> !_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"));
             _atkCour = null;
-         
         }
 
-        [SerializeField] private float attackForce = 100f;
+        IEnumerator AttackHit()
+        {
+            yield return new WaitUntil(()=>atkHit);
+            attackHitEffect.SetActive(true);
+            yield return new WaitUntil(()=> !_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"));
+            attackHitEffect.SetActive(false);
+            _atkHitCour = null;
+        }
+        
+        private bool atkHit = false;
+        [SerializeField] private GameObject attackHitEffect;
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log($"{other.name} is attacked by {gameObject.name}");
-                
+                atkHit = true;
                 other.gameObject.GetComponent<PlayerHealth>().DecreasePlayerHealth(10);
                 other.gameObject.GetComponent<PlayerMovement>().GotAttacked(transform.right);
             }
