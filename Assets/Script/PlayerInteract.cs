@@ -77,7 +77,7 @@ namespace Script
             _isInteracting = true;
             
             GetComponent<Animator>().Play("Khee");
-            GetComponent<PlayerHealth>().SetDecayValue(5f);
+            GetComponent<PlayerHealth>().SetDecayValue(12f);
 
             Vector3 target = _toilet.transform.position;
             target.y = transform.position.y;
