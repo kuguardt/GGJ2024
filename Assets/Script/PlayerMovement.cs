@@ -39,11 +39,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private Animator _anim;
     Coroutine _atkCour = null;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+
+    }
+
     private void Start()
     { 
         //hellowoerld by Rew 1/27/2024
 
-        _anim = GetComponent<Animator>();
         currentSpeed = originSpeed;
         originalGravity = rb.gravityScale;
     }
