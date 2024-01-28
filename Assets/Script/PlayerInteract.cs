@@ -8,7 +8,7 @@ namespace Script
     public class PlayerInteract : MonoBehaviour
     {
         public bool _isInteracting = false;
-        private Toilet _toilet = null;
+        [SerializeField]private Toilet _toilet = null;
         private ElevatorButton _elevatorbutton = null;
 
         [SerializeField] GameObject interactableObj;
@@ -51,8 +51,11 @@ namespace Script
 
         private void Update()
         {
-            interactableObj.SetActive(_toilet != null && !_toilet.isOccupied);
-            interactableObj.SetActive(_elevatorbutton != null && _elevatorbutton.isActive);
+            bool showHint = (_toilet != null && !_toilet.isOccupied) ||
+                            (_elevatorbutton != null && _elevatorbutton.isActive);
+            interactableObj.SetActive(showHint);
+
+            //GetComponent<Animator>().SetBool("IsKhee",_isInteracting);
 
             if (GetComponent<PlayerHealth>().IsFullHealth && _isInteracting)
             {
@@ -86,7 +89,6 @@ namespace Script
                 
             _isInteracting = false;
             
-            GetComponent<Animator>().SetTrigger("endKhee");
             GetComponent<PlayerHealth>().SetDecayValue(-1f);
 
             Vector3 tran = transform.position;
@@ -99,7 +101,6 @@ namespace Script
         {
             if (other.CompareTag("Toilet"))
             {
-                
                 _toilet = other.GetComponent<Toilet>();
             }
             if (other.CompareTag("ElevatorButton"))
@@ -107,14 +108,28 @@ namespace Script
                 _elevatorbutton = other.GetComponent<ElevatorButton>();
             }
         }
-        
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Toilet"))
+            {
+                _toilet = other.GetComponent<Toilet>();
+            }
+            if (other.CompareTag("ElevatorButton"))
+            {
+                _elevatorbutton = other.GetComponent<ElevatorButton>();
+            }
+        }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Toilet"))
             {
+                Debug.Log($"{gameObject.name} exit toilet");
                 StopInteract();
                 _toilet = null;
             }
+            
             if (other.CompareTag("ElevatorButton"))
             {
                 _elevatorbutton = null;
