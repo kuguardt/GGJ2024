@@ -8,6 +8,11 @@ public class MainMenuAction : MonoBehaviour
     [SerializeField] private GameObject optionMenu;
     [SerializeField] private GameObject creditMenu;
 
+    private void Start()
+    {
+        AudioManager.instance.PlaySound("BGM1_Fanky_Crib");
+    }
+
     public void ButtonPlay()
     {
         SceneManager.LoadScene("ConfigurationRoom");

@@ -17,6 +17,8 @@ namespace Script
             if (canUseSkill && context.started)
             {
                 Debug.Log($"Skill");
+
+                AudioManager.instance.PlaySound("Shit");
                 StartCoroutine(Gas());
             }
         }

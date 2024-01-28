@@ -22,6 +22,7 @@ public class RandomGas : MonoBehaviour
     private void UnlimitedFart()
     {
         Invoke("RandomGasPlay", Random.Range(minRate, maxRate));
+        AudioManager.instance.PlaySound("Fart" + RandomGasSound(1, 3));
     }
 
     void RandomGasPlay()
@@ -37,4 +38,8 @@ public class RandomGas : MonoBehaviour
         UnlimitedFart();
     }
     
+    private int RandomGasSound(int min, int max)
+    {
+        return Random.Range(min, max + 1);
+    }
 }

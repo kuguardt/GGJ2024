@@ -39,6 +39,8 @@ namespace Script
         
         IEnumerator AttackCoroutine()
         {
+            AudioManager.instance.PlaySound("Attack");
+
             _anim.Play("Attack2");
             yield return new WaitUntil(()=> !_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"));
             _atkCour = null;
@@ -48,6 +50,8 @@ namespace Script
         {
             yield return new WaitUntil(()=>atkHit);
             attackHitEffect.SetActive(true);
+            AudioManager.instance.PlaySound("AttackHit");
+
             yield return new WaitUntil(()=> !_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"));
             attackHitEffect.SetActive(false);
             _atkHitCour = null;
