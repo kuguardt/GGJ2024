@@ -9,6 +9,7 @@ namespace Script
     {
         public bool _isInteracting = false;
         private Toilet _toilet = null;
+        private ElevatorButton _elevatorbutton = null;
 
         [SerializeField] GameObject interactableObj;
         [SerializeField] List<Sprite> interactableSprites = new List<Sprite>();
@@ -32,6 +33,10 @@ namespace Script
             {
                 StartUsingToilet();
             }
+            if (_elevatorbutton != null && _elevatorbutton.isActive)
+            {
+                _elevatorbutton.Press();
+            }
         }
         
         private void StopInteract()
@@ -47,6 +52,7 @@ namespace Script
         private void Update()
         {
             interactableObj.SetActive(_toilet != null && !_toilet.isOccupied);
+            interactableObj.SetActive(_elevatorbutton != null && _elevatorbutton.isActive);
 
             if (GetComponent<PlayerHealth>().IsFullHealth && _isInteracting)
             {
@@ -96,6 +102,10 @@ namespace Script
                 
                 _toilet = other.GetComponent<Toilet>();
             }
+            if (other.CompareTag("ElevatorButton"))
+            {
+                _elevatorbutton = other.GetComponent<ElevatorButton>();
+            }
         }
         
         private void OnTriggerExit2D(Collider2D other)
@@ -104,6 +114,10 @@ namespace Script
             {
                 StopInteract();
                 _toilet = null;
+            }
+            if (other.CompareTag("ElevatorButton"))
+            {
+                _elevatorbutton = null;
             }
         }
     }
