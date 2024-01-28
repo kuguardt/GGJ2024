@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerInputMap();
     }
 
+    public int GetPlayerID()
+    {
+        return playerId;
+    }
+
     public void InitializePlayer(GameObject configObj, PlayerConfiguration config)
     {
         playerConfig = config;
