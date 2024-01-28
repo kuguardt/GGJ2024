@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public bool IsAlive => currentHealth > 0f;
+    public bool IsFullHealth => currentHealth >= maxHeatlh;
     [SerializeField] private float currentHealth = 100f;
 
     [SerializeField]private float maxHeatlh = 100f;
