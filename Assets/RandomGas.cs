@@ -14,13 +14,10 @@ public class RandomGas : MonoBehaviour
     void Start()
     {
         UnlimitedFart();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        
         
     }
+    
 
     private void UnlimitedFart()
     {
@@ -29,7 +26,7 @@ public class RandomGas : MonoBehaviour
 
     void RandomGasPlay()
     {
-        if (GetComponent<PlayerMovement>().movementInput.magnitude == 0)
+        if (GetComponent<PlayerMovement>() == null || GetComponent<PlayerMovement>().movementInput.magnitude == 0)
         {
             Debug.Log(Fart);
             var blank = Instantiate(Blank, transform);
