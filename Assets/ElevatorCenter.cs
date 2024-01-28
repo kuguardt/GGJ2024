@@ -54,16 +54,4 @@ public class ElevatorCenter : MonoBehaviour
             isFloor1 = true;
         }
     }
-
-    public void Change()
-    {
-        if (isFloor1)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
 }
