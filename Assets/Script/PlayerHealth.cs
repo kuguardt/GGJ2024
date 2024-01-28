@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public bool IsAlive => currentHealth > 0f;
     [SerializeField] private float currentHealth = 100f;
 
     PlayerController playerController;
 
     private float idleDecreaseRate = 1f;
     private float decreaseRate;
-
-    [SerializeField] private float decayValue = -1f;
     //private float attackDamage = 10f;
 
     private float timer = 0f;
@@ -31,13 +30,20 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer >= idleDecreaseRate)
+        
+        if (timer >= idleDecreaseRate && IsAlive)
         {
-            currentHealth += decayValue;
+            currentHealth -= 1f;
             timer = 0f;
         }
 
         timer += Time.deltaTime;
+        
+        if (currentHealth <= 0f)
+        {
+            Death();
+        }
+        
         HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
     }
 
@@ -59,5 +65,6 @@ public class PlayerHealth : MonoBehaviour
     public void Death()
     {
         currentHealth = 0f;
+        GetComponent<Animator>().Play("Death");
     }
 }

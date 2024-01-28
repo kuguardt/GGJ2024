@@ -172,6 +172,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Spritesheet_Keetak_3
+      rect:
+        serializedVersion: 2
+        x: 7500
+        y: 0
+        width: 2500
+        height: 1000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75bd25c2a2f9c6c4184792963f6ca4cd
+      internalID: -697411665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -186,6 +207,7 @@ TextureImporter:
       Spritesheet_Keetak_0: 694736456
       Spritesheet_Keetak_1: -2040037073
       Spritesheet_Keetak_2: 1460768806
+      Spritesheet_Keetak_3: -697411665
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
