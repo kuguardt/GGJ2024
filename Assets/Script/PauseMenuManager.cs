@@ -71,7 +71,7 @@ public class PauseMenuManager : MonoBehaviour
         options.SetActive(true);
         button.SetActive(false);
 
-        AudioManager.instance.PlaySound("Click");
+        AudioManager.instance.PlaySound("Click2");
     }
 
     public void BackToPauseMenu()
@@ -85,6 +85,6 @@ public class PauseMenuManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        AudioManager.instance.PlaySound("Click");
+        AudioManager.instance.PlaySound("Click2");
     }
 }

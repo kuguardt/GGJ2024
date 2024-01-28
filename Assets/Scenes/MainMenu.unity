@@ -1419,7 +1419,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Click
+          m_StringArgument: Click2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &1098269297
@@ -1609,7 +1609,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Click
+          m_StringArgument: Click2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &1170153375
@@ -1727,6 +1727,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - soundName: Click
     clip: {fileID: 8300000, guid: d11dcc046d5bcc6438088eea95b6c706, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Click2
+    clip: {fileID: 8300000, guid: 5fb100339cf1fcd449fc23db9149b931, type: 3}
     volume: 0.7
     pitch: 1
     loop: 0
