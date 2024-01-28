@@ -34,13 +34,15 @@ public class HealthBar : MonoBehaviour
         {
             return false;
         }
-        else if (currentHealth - (pointNumber * 10) < 10)
+        else
         {
-            point.color = new Color(point.color[0], point.color[1], point.color[2], (currentHealth - (pointNumber * 10))/10f);
+            if (currentHealth - (pointNumber * 10) < 10)
+                point.color = new Color(point.color[0], point.color[1], point.color[2], (currentHealth - (pointNumber * 10)) / 10f);
+            else
+                point.color = new Color(point.color[0], point.color[1], point.color[2], 1f);
+
             return true;
         }
-        else
-            return true;
         //return ((pointNumber * 10) <= currentHealth);
     }
 

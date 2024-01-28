@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
     private float decreaseRate;
 
     [SerializeField] private float decayValue = -1f;
-    //private float attackDamage = 10f;
 
     private float timer = 0f;
     private int playerID;
@@ -39,6 +38,11 @@ public class PlayerHealth : MonoBehaviour
 
         timer += Time.deltaTime;
         HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
+    }
+
+    public void SetDecayValue(float value)
+    {
+        decayValue = value;
     }
 
     public void SetDecreaseRate(int rate)
