@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    public float masterSound = 100.0f;
-    public float sfxSound = 100.0f;
-    public float bgmSound = 100.0f;
+    public float masterSound = 1f; //100.0f;
+    public float sfxSound = 1f; //100.0f;
+    public float bgmSound = 1f; //100.0f;
 
     private void Awake()
     {
@@ -48,7 +48,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
-        Debug.Log("Play sound: " + name);
     }
 
     public void StopSound(string name)
@@ -69,4 +68,29 @@ public class AudioManager : MonoBehaviour
             s.source.Stop();
         }
     }
+
+    public void SetVolume()
+    {
+        int count = 0;
+
+        foreach (Sound s in sounds)
+        {
+            //s.source.volume = masterSound;
+
+            //if (s.source.volume < 1)
+            //    Debug.Log("Volume: " + s.source.volume);
+
+            if (count < 4) // BGM
+                s.source.volume = masterSound - (1f - bgmSound);
+            else // SFX
+                s.source.volume = masterSound - (1f - sfxSound);
+
+            if (count < 1)
+                Debug.Log("Volume: " + s.source.volume);
+
+            count++;
+        }
+    }
+
+
 }
