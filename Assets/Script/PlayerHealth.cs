@@ -83,5 +83,27 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = 0f;
         GetComponent<Animator>().Play("Death");
+        if(dieCour == null) dieCour = StartCoroutine(Die());
+    }
+    
+    [SerializeField] float timeScaleIncreaseRate = 1f;
+
+    private Coroutine dieCour = null;
+    IEnumerator Die()
+    {
+        Time.timeScale = 0.3f;
+        yield return new WaitForSeconds(0.5f);
+        //Time.timeScale = 1f;
+        yield return new WaitUntil(() =>
+        {
+            Time.timeScale += Time.unscaledDeltaTime * timeScaleIncreaseRate;
+            if (Time.timeScale >= 1f)
+            {
+                Time.timeScale = 1f;
+                return true;
+            }
+        
+            return false;
+        });
     }
 }
