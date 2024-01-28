@@ -32,7 +32,7 @@ public class RandomGas : MonoBehaviour
         if (GetComponent<PlayerMovement>().movementInput.magnitude == 0)
         {
             Debug.Log(Fart);
-            var blank = Instantiate(Blank, transform.);
+            var blank = Instantiate(Blank, transform);
             Instantiate(Fart, blank.transform);
             blank.transform.parent = null;
             Destroy(blank,2f);
