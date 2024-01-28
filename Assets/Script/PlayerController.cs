@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     //public static int playerCount = 0;
     [SerializeField]
-    private int id = 0;
+    private int playerId = 0;
 
     private PlayerConfiguration playerConfig;
     public GameObject playerConfigObj;
@@ -25,38 +25,22 @@ public class PlayerController : MonoBehaviour
     
     void Awake()
     {
-
         playerMovement = GetComponent<PlayerMovement>();
         controls = new PlayerInputMap();
-
-        GetComponent<SpriteRenderer>().material.color = playerColors[id];
     }
 
     public void InitializePlayer(GameObject configObj, PlayerConfiguration config)
     {
-        Debug.Log("config start");
-
         playerConfig = config;
-        id = playerConfig.PlayerIndex;
-        GetComponent<SpriteRenderer>().material.color = playerColors[id];
+        playerId = playerConfig.PlayerIndex;
+        GetComponent<SpriteRenderer>().material.color = playerColors[playerId];
         playerConfigObj = configObj;
 
-        config.Input.onActionTriggered += Input_onActionTriggered1;
+        config.Input.onActionTriggered += Input_onActionTriggered;
     }
 
-    private void Input_onActionTriggered1(CallbackContext obj)
+    private void Input_onActionTriggered(CallbackContext obj)
     {
-        Debug.Log("Hello!!!!!!");
-
-        if (controls == null)
-        {
-            Debug.Log("InputMap is not valid");
-        }
-        else
-        {
-            Debug.Log("InputMap is valid");
-        }
-
         if (obj.action.name == controls.Gameplay.Movement.name)
         {
             OnMove(obj);
@@ -73,58 +57,26 @@ public class PlayerController : MonoBehaviour
 
     public void InitializePlayer(PlayerConfiguration config)
     {
-        Debug.Log("config start");
-
         playerConfig = config;
-        id = playerConfig.PlayerIndex;
-        GetComponent<SpriteRenderer>().material.color = playerColors[id];
+        playerId = playerConfig.PlayerIndex;
+        GetComponent<SpriteRenderer>().material.color = playerColors[playerId];
         playerConfig.Input.onActionTriggered += Input_onActionTriggered;
-    }
-
-    private void Input_onActionTriggered(CallbackContext obj)
-    {
-        Debug.Log("Hello!!!!!!");
-
-        if (controls == null)
-        {
-            Debug.Log("InputMap is not valid");
-        }
-        else
-        {
-            Debug.Log("InputMap is valid");
-        }
-
-        if (obj.action.name == controls.Gameplay.Movement.name)
-        {
-            OnMove(obj);
-        }
-        if (obj.action.name == controls.Gameplay.Jump.name)
-        {
-            OnJump(obj);
-        }
-        if (obj.action.name == controls.Gameplay.Dash.name)
-        {
-            OnDash(obj);
-        }
     }
 
     public void OnMove(CallbackContext context)
     {
-        Debug.Log("Player " + playerConfig.PlayerIndex + " : OnMove");
         if (playerMovement != null)
             playerMovement.OnMove(context);
     }
 
     public void OnJump(CallbackContext context)
     {
-        Debug.Log("Player " + playerConfig.PlayerIndex + " : OnJump");
         if (playerMovement != null)
             playerMovement.OnJump(context);
     }
 
     public void OnDash(CallbackContext context)
     {
-        Debug.Log("Player " + playerConfig.PlayerIndex + " : OnDash");
         if (playerMovement != null)
             playerMovement.OnDash(context);
     }
