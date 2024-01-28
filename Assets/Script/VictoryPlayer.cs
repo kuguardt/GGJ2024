@@ -21,7 +21,9 @@ public class VictoryPlayer : MonoBehaviour
 
         GetComponent<Animator>().SetBool("isGrounded", true);
 
-       // InvokeRepeating(nameof(swapColor), 0, 0.5f);
+        // InvokeRepeating(nameof(swapColor), 0, 0.5f);
+
+        AudioManager.instance.StopSound("BGM1_Fanky_Crib");
 
         int count = winI + 1;
         text.color= playerColors[winI];
