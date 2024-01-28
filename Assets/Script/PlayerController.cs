@@ -53,6 +53,11 @@ public class PlayerController : MonoBehaviour
 
     private void Input_onActionTriggered(CallbackContext obj)
     {
+        if (obj.action.name == controls.Gameplay.Pause.name)
+        {
+            PauseMenuManager.instance.SetActivePauseMenu();
+        }
+
         if (!playerHealth.IsAlive)
         {
             playerMovement.movementInput = Vector2.zero;

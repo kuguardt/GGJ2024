@@ -37,7 +37,8 @@ public class PlayerConfigurationManager : MonoBehaviour
         playerConfigs[index].IsReady = true;
         if (playerConfigs.All(p => p.IsReady == true))
         {
-            SceneManager.LoadScene("Control Test");
+            //SceneManager.LoadScene("Control Test");
+            SceneManager.LoadScene("View_TestScene");
         }
     }
 
