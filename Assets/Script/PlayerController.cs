@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInputMap controls;
 
+    private bool inConfigRoom = false;
+
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)] [SerializeField]
     List<Color> playerColors = new List<Color>() { Color.red, Color.blue, Color.green, Color.yellow };
 
@@ -61,6 +63,11 @@ public class PlayerController : MonoBehaviour
         
         if (obj.action.name == controls.Gameplay.Interact.name)
         {
+            if (inConfigRoom)
+            {
+
+                return;
+            }
             OnInteract(obj);
         }
         if (obj.action.name == controls.Gameplay.Skill.name)
@@ -100,7 +107,12 @@ public class PlayerController : MonoBehaviour
         playerConfig = config;
         playerId = playerConfig.PlayerIndex;
         GetComponent<SpriteRenderer>().material.color = playerColors[playerId];
-        playerConfig.Input.onActionTriggered += Input_onActionTriggered;
+        config.Input.onActionTriggered += Input_onActionTriggered;
+    }
+
+    public void SetInConfigurationRoom(bool fact)
+    {
+        inConfigRoom = fact;
     }
 
     public void OnMove(CallbackContext context)
