@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         if (obj.action.name == controls.Gameplay.Pause.name)
         {
             PauseMenuManager.instance.SetActivePauseMenu();
+            Debug.Log("Open Pause Menu");
         }
 
         if (!playerHealth.IsAlive)
