@@ -46,7 +46,7 @@ namespace Script
                 
             _isInteracting = true;
             
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+            GetComponent<Animator>().Play("Khee");
             GetComponent<PlayerHealth>().SetDecayValue(5f);
 
             transform.position = _toilet.transform.position;
@@ -58,7 +58,7 @@ namespace Script
                 
             _isInteracting = false;
             
-            GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<Animator>().SetTrigger("endKhee");
             GetComponent<PlayerHealth>().SetDecayValue(-1f);
 
         }
