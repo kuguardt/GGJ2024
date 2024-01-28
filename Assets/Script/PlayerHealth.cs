@@ -91,8 +91,8 @@ public class PlayerHealth : MonoBehaviour
     private Coroutine dieCour = null;
     IEnumerator Die()
     {
-        Time.timeScale = 0.3f;
-        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(0.15f);
         //Time.timeScale = 1f;
         yield return new WaitUntil(() =>
         {
