@@ -48,4 +48,10 @@ public class PauseMenuManager : MonoBehaviour
             isDoorClose = false;
         }
     }
+
+    public void ResumeButton()
+    {
+        SetActivePauseMenu();
+        Debug.Log("Resume");
+    }
 }
