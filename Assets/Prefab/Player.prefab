@@ -377,7 +377,7 @@ MonoBehaviour:
   currentSpeed: 0
   dashPower: 26
   vertDashMultiplier: 1.6
-  jumpPower: 13
+  jumpPower: 14
   jumpBufferTime: 0.2
   coyoteTime: 0.22
   knockbackDistance: 14
