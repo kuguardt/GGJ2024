@@ -80,15 +80,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""a8ad3ef8-681e-4f75-b791-63f2c075dc6a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -630,28 +621,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4dd82aad-42fa-42f6-b646-42a10a53763a"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""115dad9a-c7aa-482c-9d85-b44f44d87a25"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -814,7 +783,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         m_Gameplay_Skill = m_Gameplay.FindAction("Skill", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
-        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // MenuSelection
         m_MenuSelection = asset.FindActionMap("MenuSelection", throwIfNotFound: true);
         m_MenuSelection_Select = m_MenuSelection.FindAction("Select", throwIfNotFound: true);
@@ -886,7 +854,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Skill;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Dash;
-    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -897,7 +864,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         public InputAction @Skill => m_Wrapper.m_Gameplay_Skill;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
-        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -925,9 +891,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -950,9 +913,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1050,7 +1010,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         void OnSkill(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
     }
     public interface IMenuSelectionActions
     {
