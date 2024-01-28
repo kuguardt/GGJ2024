@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
 
     private float idleDecreaseRate = 1f;
     private float decreaseRate;
+
+    [SerializeField] private float decayValue = -1f;
     //private float attackDamage = 10f;
 
     private float timer = 0f;
@@ -31,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (timer >= idleDecreaseRate)
         {
-            currentHealth -= 1f;
+            currentHealth += decayValue;
             timer = 0f;
         }
 

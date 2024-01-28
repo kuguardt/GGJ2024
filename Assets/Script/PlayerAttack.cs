@@ -49,6 +49,7 @@ namespace Script
             {
                 Debug.Log($"{other.name} is attacked by {gameObject.name}");
                 
+                other.gameObject.GetComponent<PlayerHealth>().DecreasePlayerHealth(10);
                 other.gameObject.GetComponent<PlayerMovement>().GotAttacked(transform.right);
                 //other.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * attackForce, ForceMode2D.Impulse);
             }

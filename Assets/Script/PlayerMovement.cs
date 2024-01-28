@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private Vector2 movementInput;
+    public Vector2 movementInput;
     
     private float horizontal;
     [SerializeField] float originSpeed;
@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        
         movementInput = context.ReadValue<Vector2>();
     }
 

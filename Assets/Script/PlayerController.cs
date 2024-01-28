@@ -7,8 +7,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerController : MonoBehaviour
 {
     //public static int playerCount = 0;
-    [SerializeField]
-    private int playerId = 0;
+    [SerializeField] private int playerId = 0;
 
     private PlayerConfiguration playerConfig;
     public GameObject playerConfigObj;
@@ -19,13 +18,12 @@ public class PlayerController : MonoBehaviour
     private Script.PlayerInteract playerInteract;
 
     private PlayerInputMap controls;
-    
-    [ColorUsageAttribute(true,true,0f,8f,0.125f,3f)]
 
-    [SerializeField] List<Color> playerColors = new List<Color>(){Color.red, Color.blue, Color.green, Color.yellow};
+    [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)] [SerializeField]
+    List<Color> playerColors = new List<Color>() { Color.red, Color.blue, Color.green, Color.yellow };
 
     // Start is called before the first frame update
-    
+
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -52,34 +50,39 @@ public class PlayerController : MonoBehaviour
 
     private void Input_onActionTriggered(CallbackContext obj)
     {
-        if (obj.action.name == controls.MenuSelection.Movement.name)
+        if (obj.action.name == controls.Gameplay.Interact.name)
         {
-            OnMove(obj);
+            OnInteract(obj);
         }
-        if (obj.action.name == controls.MenuSelection.Select.name)
+        if (obj.action.name == controls.Gameplay.Skill.name)
         {
-            OnJump(obj);
+            OnSkill(obj);
+        }
+        
+        if (playerInteract._isInteracting)
+        {
+            playerMovement.movementInput = Vector2.zero;
+            return;
         }
 
         if (obj.action.name == controls.Gameplay.Movement.name)
         {
             OnMove(obj);
         }
+
         if (obj.action.name == controls.Gameplay.Jump.name)
         {
             OnJump(obj);
         }
+
         if (obj.action.name == controls.Gameplay.Dash.name)
         {
             OnDash(obj);
         }
+
         if (obj.action.name == controls.Gameplay.Attack.name)
         {
             OnAttack(obj);
-        }
-        if (obj.action.name == controls.Gameplay.Skill.name)
-        {
-            OnSkill(obj);
         }
     }
 
@@ -119,5 +122,11 @@ public class PlayerController : MonoBehaviour
     {
         if (playerAttack != null)
             playerAttack.OnAttack(context);
+    }
+
+    public void OnInteract(CallbackContext context)
+    {
+        if (playerInteract != null)
+            playerInteract.OnInteract(context);
     }
 }
