@@ -1685,7 +1685,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - soundName: BGM4_Winner
     clip: {fileID: 8300000, guid: 95a54038c8e9e644f93c94fb35a05a66, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
