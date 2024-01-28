@@ -43,7 +43,6 @@ public class HealthBar : MonoBehaviour
 
             return true;
         }
-        //return ((pointNumber * 10) <= currentHealth);
     }
 
     void SetHealthPointColor(float currentHealth, Image point)

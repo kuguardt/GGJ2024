@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
+    
+    public int PlayerCount => playerConfigs.Count;
+    public int winPlayerIndex = -1;
     public List<PlayerConfiguration> playerConfigs;
     public List<GameObject> playerConfigObjs;
 
