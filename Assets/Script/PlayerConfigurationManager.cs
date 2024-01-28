@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
-    
     public int PlayerCount => playerConfigs.Count;
     public int winPlayerIndex = -1;
     public List<PlayerConfiguration> playerConfigs;
     public List<GameObject> playerConfigObjs;
 
+    public bool inConfigRoom = false;
 
     public static PlayerConfigurationManager instance;
     private void Awake()
@@ -30,6 +30,18 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("ResetConfigs")]
+    public void ResetConfigs()
+    {
+        foreach (GameObject obj in playerConfigObjs)
+        {
+            Destroy(obj);
+        }
+
+        playerConfigs = new List<PlayerConfiguration>();
+        playerConfigObjs = new List<GameObject>();
+    }
+
     public void SetPlayerColor(int index, string color)
     {
         playerConfigs[index].Color = color;
@@ -40,6 +52,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         playerConfigs[index].IsReady = true;
         if (playerConfigs.All(p => p.IsReady == true))
         {
+            inConfigRoom = false;
             SceneManager.LoadScene("Mainlevel");
         }
     }
