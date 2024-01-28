@@ -12,16 +12,38 @@ public class PlayerSetupMenuController : MonoBehaviour
     private TextMeshProUGUI titleText;
     [SerializeField]
     private GameObject readyPanel;
+    
+    [SerializeField]
+    private GameObject inputGroup;
+    [SerializeField]
+    private Image promptImage;
     [SerializeField]
     private Button readyButton;
-
+    [SerializeField]
+    private TextMeshProUGUI readyButtonText;
+    
+    [SerializeField]
+    private TextMeshProUGUI ready;
+    
+    [SerializeField] List<Sprite> buttonIcons = new List<Sprite>();
+    
     private float ignoreInputTime = 1.5f;
     private bool inputEnabled;
+    
+    [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)] [SerializeField]
+    List<Color> playerColors = new List<Color>() { Color.red, Color.blue, Color.green, Color.yellow };
+
     public void setPlayerIndex(int pi)
     {
         playerIndex = pi;
         titleText.SetText("Player " + (pi + 1).ToString());
         ignoreInputTime = Time.time + ignoreInputTime;
+        titleText.color = playerColors[playerIndex];
+    }
+
+    public void SetUI(int type)
+    {
+        promptImage.sprite = buttonIcons[type];
     }
 
     // Start is called before the first frame update
@@ -55,6 +77,8 @@ public class PlayerSetupMenuController : MonoBehaviour
         if (!inputEnabled) { return; }
 
         PlayerConfigurationManager.instance.ReadyPlayer(playerIndex);
-        readyButton.gameObject.SetActive(false);
+        inputGroup.SetActive(false);
+        
+        ready.gameObject.SetActive(true);
     }
 }

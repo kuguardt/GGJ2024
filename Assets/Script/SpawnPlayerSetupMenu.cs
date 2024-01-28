@@ -29,6 +29,11 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
             var menu = Instantiate(playerSetupMenuPrefab, rootMenu.transform);
             input.uiInputModule = menu.GetComponentInChildren<InputSystemUIInputModule>();
             menu.GetComponent<PlayerSetupMenuController>().setPlayerIndex(input.playerIndex);
+
+            int controllerMode = 0;
+            if(input.devices[0].description.manufacturer == "Sony Interactive Entertainment") controllerMode = 1;
+            
+            menu.GetComponent<PlayerSetupMenuController>().SetUI(controllerMode);
             playerId = input.playerIndex;
 
             SpawnPlayer(PlayerConfigurationManager.instance.GetPlayerConfigs()[playerId]);
