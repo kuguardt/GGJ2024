@@ -28,4 +28,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public int GetPlayerID()
+    {
+        return playerId;
+    }
 }

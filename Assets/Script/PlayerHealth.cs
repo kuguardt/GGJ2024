@@ -6,16 +6,24 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float currentHealth = 100f;
 
-    private float idleDecreaseRate = 3f;
+    PlayerController playerController;
+
+    private float idleDecreaseRate = 1f;
     private float decreaseRate;
     //private float attackDamage = 10f;
 
     private float timer = 0f;
+    private int playerID;
 
-    // Start is called before the first frame update
     void Start()
     {
         decreaseRate = idleDecreaseRate;
+
+        playerController = GetComponent<PlayerController>();
+        playerID = playerController.GetPlayerID();
+
+        HPBarManager.instance.SetActiveHealthBar(playerID);
+        HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
     }
 
     // Update is called once per frame
@@ -28,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         timer += Time.deltaTime;
+        HPBarManager.instance.SetHealthBarUI(playerID, currentHealth);
     }
 
     public void SetDecreaseRate(int rate)
