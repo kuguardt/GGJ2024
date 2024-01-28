@@ -39,7 +39,7 @@ namespace Script
             }
 
         }
-        
+        float originZ = 0;
         private void StartUsingToilet()
         {
             _toilet.isOccupied = true;
@@ -49,6 +49,7 @@ namespace Script
             GetComponent<Animator>().Play("Khee");
             GetComponent<PlayerHealth>().SetDecayValue(5f);
 
+            originZ = transform.position.z;
             transform.position = _toilet.transform.position;
         }
 
@@ -60,6 +61,10 @@ namespace Script
             
             GetComponent<Animator>().SetTrigger("endKhee");
             GetComponent<PlayerHealth>().SetDecayValue(-1f);
+
+            Vector3 tran = transform.position;
+            tran.z = originZ;
+            transform.position = tran;
 
         }
 
