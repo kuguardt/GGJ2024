@@ -664,12 +664,12 @@ PrefabInstance:
         type: 3}
       propertyPath: redbutton
       value: 
-      objectReference: {fileID: 2048748444}
+      objectReference: {fileID: 826536656}
     - target: {fileID: 6713815911895184498, guid: 6f509bc9ba0edd043939bd471f6d4f1a,
         type: 3}
       propertyPath: greenbutton
       value: 
-      objectReference: {fileID: 826536656}
+      objectReference: {fileID: 2048748444}
     - target: {fileID: 6713815911895184498, guid: 6f509bc9ba0edd043939bd471f6d4f1a,
         type: 3}
       propertyPath: elevatorCenter
@@ -3275,6 +3275,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toilet
       objectReference: {fileID: 0}
+    - target: {fileID: 3343533142073160331, guid: 8e12745e4b2ab714c9e31e5800ec77f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8633443510415691803, guid: 8e12745e4b2ab714c9e31e5800ec77f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4481,6 +4486,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toilet (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3343533142073160331, guid: 8e12745e4b2ab714c9e31e5800ec77f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8633443510415691803, guid: 8e12745e4b2ab714c9e31e5800ec77f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5383,12 +5393,12 @@ PrefabInstance:
         type: 3}
       propertyPath: redbutton
       value: 
-      objectReference: {fileID: 639771873}
+      objectReference: {fileID: 2081115907}
     - target: {fileID: 6713815911895184498, guid: 6f509bc9ba0edd043939bd471f6d4f1a,
         type: 3}
       propertyPath: greenbutton
       value: 
-      objectReference: {fileID: 2081115907}
+      objectReference: {fileID: 639771873}
     - target: {fileID: 6713815911895184498, guid: 6f509bc9ba0edd043939bd471f6d4f1a,
         type: 3}
       propertyPath: elevatorCenter
