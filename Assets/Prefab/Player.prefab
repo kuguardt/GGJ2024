@@ -224,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 146480116462107303}
   - component: {fileID: 194514639476803713}
-  - component: {fileID: 8385315103153301254}
   - component: {fileID: 3454890818872347994}
   - component: {fileID: 7899717690256658647}
   - component: {fileID: 2503231786581267675}
@@ -310,133 +309,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8385315103153301254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7751997959909513773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b477293a3f0bdfd438c5e0247f8ee472,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7899717690256658647}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 02a30691-10d4-47bf-8f7c-a3d994b8f451
-    m_ActionName: Gameplay/Movement[/DualSenseGamepadHID/leftStick,/DualSenseGamepadHID1/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2503231786581267675}
-        m_TargetAssemblyTypeName: Script.PlayerAttack, Assembly-CSharp
-        m_MethodName: OnAttack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 9bbb0098-8636-45c9-a89f-5a71763886d5
-    m_ActionName: Gameplay/Attack[/DualSenseGamepadHID/buttonWest,/DualSenseGamepadHID1/buttonWest,/Keyboard/j]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2735954483544421929}
-        m_TargetAssemblyTypeName: Script.PlayerSkill, Assembly-CSharp
-        m_MethodName: OnSkill
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2e15fbcb-8151-4d25-b661-a5e7f57d9dc4
-    m_ActionName: Gameplay/Dash[/DualSenseGamepadHID/buttonEast,/DualSenseGamepadHID1/buttonEast,/Keyboard/l]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 491a15d7-0d21-466d-a0b1-7716d123cb80
-    m_ActionName: Gameplay/Interact[/DualSenseGamepadHID/buttonNorth,/DualSenseGamepadHID1/buttonNorth,/Keyboard/i]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7899717690256658647}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6b8bfb0b-7bf7-4589-b484-2fd298b70e33
-    m_ActionName: Gameplay/Jump[/DualSenseGamepadHID/leftStick/up,/Keyboard/w,/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7899717690256658647}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: OnDash
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 06a3a445-1431-464e-911b-0b303501dce8
-    m_ActionName: Gameplay/Dash[/DualSenseGamepadHID/buttonEast,/DualSenseGamepadHID/leftStick/x,/DualSenseGamepadHID/dpad/left,/DualSenseGamepadHID/dpad/right]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &3454890818872347994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45abe079b8b1d0c43be90ea00a556e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  playerConfigObj: {fileID: 0}
+  playerMovement: {fileID: 0}
   playerColors:
   - {r: 23.96863, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 32, a: 1}
@@ -469,12 +344,12 @@ MonoBehaviour:
   originSpeed: 10
   currentSpeed: 0
   dashPower: 30
+  vertDashMultiplier: 0
   jumpPower: 18
   jumpBufferTime: 0.2
   coyoteTime: 0.22
   knockbackDistance: 30
   knockbackStunDuration: 0.4
-  knockbackForceMode: 0
   rb: {fileID: 7873133209184088148}
   groundCheck: {fileID: 6009422457977851407}
   groundLayer:

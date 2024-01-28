@@ -3,6 +3,7 @@ using System.Collections;
 using Script;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashPower;
     bool isDashing = false;
     private float dashTimer;
+    [SerializeField] float vertDashMultiplier;
     
     [SerializeField] float jumpPower;
     [SerializeField] float jumpBufferTime;
@@ -34,10 +36,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float originalGravity;
     
-
     // Start is called before the first frame update
-    void Start()
-    {
+    private Animator _anim;
+    Coroutine _atkCour = null;
+    private void Start()
+    { 
+        //hellowoerld by Rew 1/27/2024
+
+        _anim = GetComponent<Animator>();
         currentSpeed = originSpeed;
         originalGravity = rb.gravityScale;
     }
@@ -72,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = true;
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 jumpBufferCount = 0f;
+                
+                _anim.Play("Jump");
             }
             
         }
@@ -116,6 +124,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Flip();
+        
+        _anim.SetBool("isWalking" , rb.velocity.x != 0f);
+        _anim.SetBool("isGrounded", IsGrounded());
+        _anim.SetBool("isFalling", rb.velocity.y < 0f);
     }
     
     
@@ -165,9 +177,16 @@ public class PlayerMovement : MonoBehaviour
     {
         isKnockback = true;
         rb.velocity = Vector2.zero;
-        rb.AddForce(attackDirection * knockbackDistance, ForceMode2D.Impulse);
+        Vector2 knockbackDirection =
+            new Vector2((attackDirection.x), Random.Range(0.1f, 0.5f)).normalized * knockbackDistance;
+        rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
+        
+        _anim.Play("Knockback");
         yield return new WaitForSeconds(knockbackStunDuration);
+        
         isKnockback = false;
+        _anim.SetTrigger("endKnockback");
+
     }
 
     private IEnumerator Dash()
@@ -180,17 +199,23 @@ public class PlayerMovement : MonoBehaviour
         float y = Mathf.Clamp(movementInput.y, 0, 1f);
         
         Vector2 originalVelocity = rb.velocity;
-        //float y = Mathf.Clamp(movementInput.y, 0, 1f) * dashPower/3.0f;
-       
-        
-        rb.velocity = new Vector2(dashPower * Mathf.Sign(movementInput.x), rb.velocity.y);
+        if (Mathf.Abs(movementInput.x) < 0.1f && movementInput.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(movementInput.y, 0, 1f) * dashPower / vertDashMultiplier);
+        }
+        else
+        {
+            rb.velocity = new Vector2(dashPower * Mathf.Sign(movementInput.x), rb.velocity.y);
+        }
 
+        _anim.Play("Dash");
         yield return new WaitForSeconds(dashTime);
 
         rb.velocity = originalVelocity;
         rb.gravityScale = originalGravity;
         dashTimer = Time.time + GetComponent<PlayerSkill>().skillCD;
         isDashing = false;
+        _anim.SetTrigger("endDash");
     }
 
    
