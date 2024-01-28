@@ -52,6 +52,15 @@ public class PlayerController : MonoBehaviour
 
     private void Input_onActionTriggered(CallbackContext obj)
     {
+        if (obj.action.name == controls.MenuSelection.Movement.name)
+        {
+            OnMove(obj);
+        }
+        if (obj.action.name == controls.MenuSelection.Select.name)
+        {
+            OnJump(obj);
+        }
+
         if (obj.action.name == controls.Gameplay.Movement.name)
         {
             OnMove(obj);
