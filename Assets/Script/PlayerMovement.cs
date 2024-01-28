@@ -215,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = originalGravity;
         dashTimer = Time.time + GetComponent<PlayerSkill>().skillCD;
         isDashing = false;
+        
         _anim.SetTrigger("endDash");
     }
 

@@ -403,7 +403,40 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Dpad",
+                    "name": "ButtonJump",
+                    "id": "2535ac99-21a4-42db-abf0-7772672aeb18",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "105cd7c3-5535-4bf5-892d-18f11b40f7e3",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "b56d8724-2323-438b-8300-f3bdafc23f95",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "DpadJump",
                     "id": "811b4a58-713e-4549-bc54-3bbf1c40e2bc",
                     "path": "OneModifier",
                     "interactions": "",

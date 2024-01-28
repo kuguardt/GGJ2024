@@ -321,9 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45abe079b8b1d0c43be90ea00a556e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  playerId: 0
   playerConfigObj: {fileID: 0}
-  playerMovement: {fileID: 0}
   playerColors:
   - {r: 23.96863, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 32, a: 1}
@@ -344,7 +343,7 @@ MonoBehaviour:
   originSpeed: 10
   currentSpeed: 0
   dashPower: 30
-  vertDashMultiplier: 0
+  vertDashMultiplier: 2.5
   jumpPower: 18
   jumpBufferTime: 0.2
   coyoteTime: 0.22
