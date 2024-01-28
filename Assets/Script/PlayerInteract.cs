@@ -52,6 +52,7 @@ namespace Script
         private void Update()
         {
             interactableObj.SetActive(_toilet != null && !_toilet.isOccupied);
+            interactableObj.SetActive(_elevatorbutton != null && _elevatorbutton.isActive);
 
             if (GetComponent<PlayerHealth>().IsFullHealth && _isInteracting)
             {
