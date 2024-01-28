@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
     [ColorUsageAttribute(true,true,0f,8f,0.125f,3f)]
 
     [SerializeField] List<Color> playerColors = new List<Color>(){Color.red, Color.blue, Color.green, Color.yellow};
+
     // Start is called before the first frame update
     
     void Awake()
     {
+
         playerMovement = GetComponent<PlayerMovement>();
         controls = new PlayerInputMap();
+
+        GetComponent<SpriteRenderer>().material.color = playerColors[id];
     }
 
     public void InitializePlayer(GameObject configObj, PlayerConfiguration config)
@@ -124,4 +128,5 @@ public class PlayerController : MonoBehaviour
         if (playerMovement != null)
             playerMovement.OnDash(context);
     }
+
 }
