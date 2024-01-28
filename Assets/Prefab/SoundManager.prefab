@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7515194842641921973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3502630161660024544}
+  - component: {fileID: 4000893958124038081}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3502630161660024544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515194842641921973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4000893958124038081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7515194842641921973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae91fcdd0568af4cbec779fd81d9235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - soundName: BGM1_Fanky_Crib
+    clip: {fileID: 8300000, guid: 1e63bfa3baede72429bdb0d1554b85db, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - soundName: BGM2_Funky_Crazy
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - soundName: BGM3_Thinking_Time
+    clip: {fileID: 8300000, guid: da408d2bda939764d99989f82f3bd3af, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - soundName: BGM4_Winner
+    clip: {fileID: 8300000, guid: 95a54038c8e9e644f93c94fb35a05a66, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - soundName: Fart1
+    clip: {fileID: 8300000, guid: facf6bee88b78e74d96bd3bf4681a28c, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Fart2
+    clip: {fileID: 8300000, guid: ff52d79c184bc10468d0f308dca2eaf4, type: 3}
+    volume: 0.35
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Fart3
+    clip: {fileID: 8300000, guid: a8cd298b9ae6fe0468808ab64d7774e6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: EndFart
+    clip: {fileID: 8300000, guid: 95a7f99a247ac5948a266a196e77460e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Shit
+    clip: {fileID: 8300000, guid: f12253ff6c7625342a03643f650fd1d5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Jump
+    clip: {fileID: 8300000, guid: 86a0d2e7b68832246a0c3888736a01ee, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Click
+    clip: {fileID: 8300000, guid: d11dcc046d5bcc6438088eea95b6c706, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Click2
+    clip: {fileID: 8300000, guid: 5fb100339cf1fcd449fc23db9149b931, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: Attack
+    clip: {fileID: 8300000, guid: f74195726c3dca6498aace582ef90bdd, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - soundName: AttackHit
+    clip: {fileID: 8300000, guid: 5fb100339cf1fcd449fc23db9149b931, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  masterSound: 100
+  sfxSound: 100
+  bgmSound: 100

@@ -4,20 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
-    private void Awake()
+    private void Start()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-    }
-
-    public void PrintSomething()
-    {
-        Debug.Log("SOMtjeiorewrji");
+        PlayerConfigurationManager.instance.inConfigRoom = true;
+        PlayerConfigurationManager.instance.ResetConfigs();
     }
 }
