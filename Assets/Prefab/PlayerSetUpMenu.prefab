@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2059895779900331149}
   - component: {fileID: 8384312724129575861}
   m_Layer: 5
-  m_Name: PlayerSetupMenu
+  m_Name: PlayerSetUpMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_PointAction: {fileID: 0}
   m_MoveAction: {fileID: -3345808516300817615, guid: b477293a3f0bdfd438c5e0247f8ee472,
     type: 3}
-  m_SubmitAction: {fileID: 7059642504789305018, guid: b477293a3f0bdfd438c5e0247f8ee472,
+  m_SubmitAction: {fileID: -1583284901998833259, guid: b477293a3f0bdfd438c5e0247f8ee472,
     type: 3}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
