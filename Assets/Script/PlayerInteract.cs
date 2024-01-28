@@ -8,6 +8,7 @@ namespace Script
     {
         public bool _isInteracting = false;
         private Toilet _toilet = null;
+        private ElevatorButton _elevatorbutton = null;
 
         public void OnInteract(InputAction.CallbackContext context)
         {
@@ -27,6 +28,10 @@ namespace Script
             if (_toilet != null && !_toilet.isOccupied)
             {
                 StartUsingToilet();
+            }
+            if (_elevatorbutton != null && _elevatorbutton.isActive)
+            {
+                _elevatorbutton.Press();
             }
         }
         
@@ -74,6 +79,10 @@ namespace Script
             {
                 _toilet = other.GetComponent<Toilet>();
             }
+            if (other.CompareTag("ElevatorButton"))
+            {
+                _elevatorbutton = other.GetComponent<ElevatorButton>();
+            }
         }
         
         private void OnTriggerExit2D(Collider2D other)
@@ -82,6 +91,10 @@ namespace Script
             {
                 StopInteract();
                 _toilet = null;
+            }
+            if (other.CompareTag("ElevatorButton"))
+            {
+                _elevatorbutton = null;
             }
         }
     }
