@@ -39,7 +39,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         playerConfigs[index].IsReady = true;
         if (playerConfigs.Count == maxPlayers && playerConfigs.All(p => p.IsReady == true))
         {
-            SceneManager.LoadScene("ControlTest2");
+            SceneManager.LoadScene("Control Test");
         }
     }
 

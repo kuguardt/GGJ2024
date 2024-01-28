@@ -12,8 +12,11 @@ public class PlayerController : MonoBehaviour
 
     private PlayerConfiguration playerConfig;
     public GameObject playerConfigObj;
-    [SerializeField]
+
     private PlayerMovement playerMovement;
+    private Script.PlayerAttack playerAttack;
+    private Script.PlayerSkill playerSkill;
+    private Script.PlayerInteract playerInteract;
 
     private PlayerInputMap controls;
     
@@ -26,6 +29,9 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        playerAttack = GetComponent<Script.PlayerAttack>();
+        playerSkill = GetComponent<Script.PlayerSkill>();
+        playerInteract = GetComponent<Script.PlayerInteract>();
         controls = new PlayerInputMap();
     }
 
@@ -52,6 +58,14 @@ public class PlayerController : MonoBehaviour
         if (obj.action.name == controls.Gameplay.Dash.name)
         {
             OnDash(obj);
+        }
+        if (obj.action.name == controls.Gameplay.Attack.name)
+        {
+            OnAttack(obj);
+        }
+        if (obj.action.name == controls.Gameplay.Skill.name)
+        {
+            OnSkill(obj);
         }
     }
 
@@ -81,4 +95,15 @@ public class PlayerController : MonoBehaviour
             playerMovement.OnDash(context);
     }
 
+    public void OnSkill(CallbackContext context)
+    {
+        if (playerSkill != null)
+            playerSkill.OnSkill(context);
+    }
+
+    public void OnAttack(CallbackContext context)
+    {
+        if (playerAttack != null)
+            playerAttack.OnAttack(context);
+    }
 }
