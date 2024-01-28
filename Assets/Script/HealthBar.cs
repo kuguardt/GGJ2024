@@ -10,28 +10,21 @@ public class HealthBar : MonoBehaviour
 
     private float healthTest = 88f;
 
-    // TO-DO: get player health
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
-        HealthBarFilter();
+        //HealthBarFilter();
 
-        if (Input.GetKeyDown(KeyCode.J))
-            healthTest -= 1f;
+        //if (Input.GetKeyDown(KeyCode.J))
+        //    healthTest -= 1f;
     }
 
-    void HealthBarFilter()
+    public void HealthBarFilter(float HP)
     {
         for(int i = 0; i < healthPoints.Length; i++)
         {
-            healthPoints[i].enabled = DisplayHealthPoint(healthTest, i, healthPoints[i]);
-            SetHealthPointColor(healthTest, healthPoints[i]);
+            healthPoints[i].enabled = DisplayHealthPoint(HP, i, healthPoints[i]);
+            SetHealthPointColor(HP, healthPoints[i]);
         }
     }
 
