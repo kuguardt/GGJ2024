@@ -54,18 +54,20 @@ public class PlayerHealth : MonoBehaviour
         decayValue = value;
     }
 
-    public void SetDecreaseRate(int rate)
+    public void SetDecreaseRate(float rate)
     {
         decreaseRate = rate;
     }
 
-    public void IncreasePlayerHealth(int health)
+    public void IncreasePlayerHealth(float health)
     {
         currentHealth += health;
     }
 
-    public void DecreasePlayerHealth(int health)
+    public void DecreasePlayerHealth(float health)
     {
+        //if (!IsAlive) return;
+      
         currentHealth -= health;
     }
 

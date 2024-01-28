@@ -61,7 +61,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 2caae6e7-e57d-4448-9ba2-811abe377d45
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &5447892124198348293
@@ -79,3 +79,6 @@ MonoBehaviour:
   playerSetupMenuPrefab: {fileID: 1901168615888652445, guid: 5d338c89134e2374aa77133fe60950fd,
     type: 3}
   input: {fileID: 8611145509668466425}
+  configSpawnPoint: {fileID: 3705195961560309744}
+  playerPrefab: {fileID: 7751997959909513773, guid: 428c78d1567c92c4c94d748c7c560389,
+    type: 3}

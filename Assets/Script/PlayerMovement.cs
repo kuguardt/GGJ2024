@@ -87,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (context.canceled && rb.velocity.y > 0f)
         {
-            Debug.Log($"Cancel Jump");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
             coyoteTimeCount = 0f;
@@ -194,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         rb.gravityScale = 0;
-        float dashTime = 0.25f;
+        float dashTime = 0.2f;
 
         float x = movementInput.x;
         float y = Mathf.Clamp(movementInput.y, 0, 1f);
