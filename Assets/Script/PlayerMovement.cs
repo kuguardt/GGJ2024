@@ -37,8 +37,13 @@ public class PlayerMovement : MonoBehaviour
     private float originalGravity;
     
     // Start is called before the first frame update
-    void Start()
-    {
+    private Animator _anim;
+    Coroutine _atkCour = null;
+    private void Start()
+    { 
+        //hellowoerld by Rew 1/27/2024
+
+        _anim = GetComponent<Animator>();
         currentSpeed = originSpeed;
         originalGravity = rb.gravityScale;
     }
@@ -73,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = true;
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 jumpBufferCount = 0f;
+                
+                _anim.Play("Jump");
             }
             
         }
@@ -117,6 +124,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Flip();
+        
+        _anim.SetBool("isWalking" , rb.velocity.x != 0f);
+        _anim.SetBool("isGrounded", IsGrounded());
+        _anim.SetBool("isFalling", rb.velocity.y < 0f);
     }
     
     
@@ -169,8 +180,13 @@ public class PlayerMovement : MonoBehaviour
         Vector2 knockbackDirection =
             new Vector2((attackDirection.x), Random.Range(0.1f, 0.5f)).normalized * knockbackDistance;
         rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
+        
+        _anim.Play("Knockback");
         yield return new WaitForSeconds(knockbackStunDuration);
+        
         isKnockback = false;
+        _anim.SetTrigger("endKnockback");
+
     }
 
     private IEnumerator Dash()
@@ -192,12 +208,14 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(dashPower * Mathf.Sign(movementInput.x), rb.velocity.y);
         }
 
+        _anim.Play("Dash");
         yield return new WaitForSeconds(dashTime);
 
         rb.velocity = originalVelocity;
         rb.gravityScale = originalGravity;
         dashTimer = Time.time + GetComponent<PlayerSkill>().skillCD;
         isDashing = false;
+        _anim.SetTrigger("endDash");
     }
 
    
