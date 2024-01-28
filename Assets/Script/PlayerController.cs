@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     //public static int playerCount = 0;
     [SerializeField] private int playerId = 0;
-
+    
     private PlayerConfiguration playerConfig;
     public GameObject playerConfigObj;
 
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
         return playerId;
     }
 
+    public bool isController = false;
     public void InitializePlayer(GameObject configObj, PlayerConfiguration config)
     {
         playerConfig = config;
@@ -51,6 +52,10 @@ public class PlayerController : MonoBehaviour
         playerConfigObj = configObj;
         gameObject.name = "Player" + playerId;
 
+        isController = playerConfig.Input.devices[0].description.manufacturer == "Sony Interactive Entertainment";
+
+        playerInteract.SetInteractButton(playerColors[playerId],isController);
+        
         config.Input.onActionTriggered += Input_onActionTriggered;
     }
 

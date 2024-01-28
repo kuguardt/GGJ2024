@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public bool IsAlive => currentHealth > 0f;
+    public bool IsFullHealth => currentHealth >= maxHeatlh;
     [SerializeField] private float currentHealth = 100f;
 
+    [SerializeField]private float maxHeatlh = 100f;
+    
     PlayerController playerController;
 
     private float idleDecreaseRate = 1f;
@@ -40,6 +43,11 @@ public class PlayerHealth : MonoBehaviour
         }
 
         timer += Time.deltaTime;
+
+        if (currentHealth > maxHeatlh)
+        {
+            currentHealth = maxHeatlh;    
+        }
         
         if (currentHealth <= 0f)
         {

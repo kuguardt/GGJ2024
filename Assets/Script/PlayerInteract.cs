@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ namespace Script
         public bool _isInteracting = false;
         private Toilet _toilet = null;
 
+        [SerializeField] GameObject interactableObj;
+        [SerializeField] List<Sprite> interactableSprites = new List<Sprite>();
+        
         public void OnInteract(InputAction.CallbackContext context)
         {
             if (context.started)
@@ -39,7 +43,24 @@ namespace Script
             }
 
         }
-        
+
+        private void Update()
+        {
+            interactableObj.SetActive(_toilet != null && !_toilet.isOccupied);
+
+            if (GetComponent<PlayerHealth>().IsFullHealth && _isInteracting)
+            {
+                StopUsingToilet();
+            }
+        }
+
+        public void SetInteractButton(Color c , bool isController)
+        {
+            interactableObj.GetComponent<SpriteRenderer>().material.color = c;
+            interactableObj.GetComponent<SpriteRenderer>().sprite = interactableSprites[isController ? 1 : 0];
+        }
+
+        float originZ = 0;
         private void StartUsingToilet()
         {
             _toilet.isOccupied = true;
@@ -49,6 +70,7 @@ namespace Script
             GetComponent<Animator>().Play("Khee");
             GetComponent<PlayerHealth>().SetDecayValue(5f);
 
+            originZ = transform.position.z;
             transform.position = _toilet.transform.position;
         }
 
@@ -61,12 +83,17 @@ namespace Script
             GetComponent<Animator>().SetTrigger("endKhee");
             GetComponent<PlayerHealth>().SetDecayValue(-1f);
 
+            Vector3 tran = transform.position;
+            tran.z = originZ;
+            transform.position = tran;
+
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Toilet"))
             {
+                
                 _toilet = other.GetComponent<Toilet>();
             }
         }
