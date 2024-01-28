@@ -13,7 +13,7 @@ namespace Script
         Coroutine _atkCour = null;
         Coroutine _atkHitCour = null;
 
-        private void Start()
+        private void Awake()
         {
             _anim = GetComponent<Animator>();
         }

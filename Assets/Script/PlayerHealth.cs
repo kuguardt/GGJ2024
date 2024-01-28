@@ -83,11 +83,22 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += health;
     }
 
+    private Coroutine iFrameCour = null;
+
+    IEnumerator iFrame(float health)
+    {
+        currentHealth -= health;
+        yield return new WaitForSeconds(0.3f);
+        iFrameCour = null;
+    }
+
     public void DecreasePlayerHealth(float health)
     {
-        //if (!IsAlive) return;
-      
-        currentHealth -= health;
+        if (iFrameCour == null)
+        {
+            iFrameCour = StartCoroutine(iFrame(health));
+        }
+
     }
 
     public void Death()
