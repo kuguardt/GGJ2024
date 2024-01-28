@@ -341,14 +341,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
-  originSpeed: 10
+  originSpeed: 6
   currentSpeed: 0
-  dashPower: 30
-  vertDashMultiplier: 2.5
-  jumpPower: 18
+  dashPower: 26
+  vertDashMultiplier: 1.6
+  jumpPower: 13
   jumpBufferTime: 0.2
   coyoteTime: 0.22
-  knockbackDistance: 30
+  knockbackDistance: 14
   knockbackStunDuration: 0.4
   rb: {fileID: 7873133209184088148}
   groundCheck: {fileID: 6009422457977851407}

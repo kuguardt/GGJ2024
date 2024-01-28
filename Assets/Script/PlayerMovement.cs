@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         rb.gravityScale = 0;
-        float dashTime = 0.25f;
+        float dashTime = 0.2f;
 
         float x = movementInput.x;
         float y = Mathf.Clamp(movementInput.y, 0, 1f);
