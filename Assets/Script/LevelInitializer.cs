@@ -61,7 +61,7 @@ public class LevelInitializer : MonoBehaviour
     IEnumerator EndGame()
     {
         
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(1.69f);
         Debug.Log("End Game");
         SceneManager.LoadScene("EndScene");
     }

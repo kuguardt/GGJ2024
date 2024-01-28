@@ -55,7 +55,7 @@ namespace Script
                             (_elevatorbutton != null && _elevatorbutton.isActive);
             interactableObj.SetActive(showHint);
 
-            //GetComponent<Animator>().SetBool("IsKhee",_isInteracting);
+            GetComponent<Animator>().SetBool("IsKhee",_isInteracting);
 
             if (GetComponent<PlayerHealth>().IsFullHealth && _isInteracting)
             {
@@ -79,8 +79,10 @@ namespace Script
             GetComponent<Animator>().Play("Khee");
             GetComponent<PlayerHealth>().SetDecayValue(5f);
 
+            Vector3 target = _toilet.transform.position;
+            target.y = transform.position.y;
             originZ = transform.position.z;
-            transform.position = _toilet.transform.position;
+            transform.position = target;
         }
 
         private void StopUsingToilet()
